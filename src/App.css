@@ -1,9 +1,26 @@
 .App {
   text-align: center;
+  height: 100vh;
 }
 
-.App-header {
-  background-color: #282c34;
-  color: white;
+.app-view{
+
+  display: flex;
+  height: 100vh;
 }
+
+div.side-menu{
+  display: none;
+}
+
+@media only screen and (min-width: 768px) {
+ div.footer{
+  display: none;
+ }
+ div.side-menu{
+  display: inline;
+ }
+}
+
+
 
