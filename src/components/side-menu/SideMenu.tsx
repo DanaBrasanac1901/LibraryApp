@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import '../styles/SideMenu.css'
+import './side-menu.css'
 
 export function SideMenu() {
   return (

@@ -1,19 +1,20 @@
-import './App.css'
 import { Routes, Route } from 'react-router-dom'
 
-import { HomePage } from './pages/HomePage'
-import { BookDetails } from './pages/BookDetails'
-import { FooterMenu } from './components/FooterMenu'
-import { ProfilePage } from './pages/ProfilePage'
-import { SideMenu } from './components/SideMenu'
+import { HomePage } from './pages/home-page/HomePage'
+import { BookDetails } from './pages/book-details/BookDetails'
+import { FooterMenu } from './components/footer-menu/FooterMenu'
+import { ProfilePage } from './pages/profile-page/ProfilePage'
+import { SideMenu } from './components/side-menu/SideMenu'
 import { ConditionalWrapper } from './components/ConditionalWrapper'
-import { HeaderMenu } from './components/HeaderMenu'
-import { SearchBar } from './components/SearchBar'
+import { HeaderMenu } from './components/header-menu/HeaderMenu'
+import { SearchBar } from './components/search-bar/SearchBar'
+
+import './app.css'
 
 function App() {
   return (
-    <div className='App'>
-      <header className='App-header'>
+    <div className='app'>
+      <header className='app-header'>
         <ConditionalWrapper
           condition={screen.availWidth > 768}
           wrapper={(children) => (

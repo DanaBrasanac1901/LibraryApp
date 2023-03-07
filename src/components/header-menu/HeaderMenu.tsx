@@ -2,7 +2,7 @@ import { ReactNode } from 'react'
 
 import { Link } from 'react-router-dom'
 
-import '../styles/HeaderMenu.css'
+import './header-menu.css'
 
 interface Props {
   children: ReactNode

@@ -1,5 +1,5 @@
 import { ImSearch } from 'react-icons/im'
-import '../styles/SearchBar.css'
+import './search-bar.css'
 
 export function SearchBar() {
   return (

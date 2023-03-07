@@ -1,0 +1,19 @@
+.header-menu{
+    width: 100%;
+    background-color: grey;
+    color: white;
+    height: 8vh;
+    justify-content:flex-end;
+    align-items: center;
+    border-bottom: solid black;
+    display: flex;
+}
+
+.header-buttons{
+    background-color: grey;
+    color: white;
+    font-size: larger;
+    border-radius: 15px;
+    border: solid;
+    margin: 0px 5px;
+}

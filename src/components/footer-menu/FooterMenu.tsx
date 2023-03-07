@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
-import '../styles/FooterMenu.css'
+import './footer-menu.css'
 
 export function FooterMenu() {
   return (
-    <div className='footer'>
+    <span className='footer'>
       <div>
         <Link to='/'>
           <button className='footer-buttons'>Home</button>
@@ -14,6 +14,6 @@ export function FooterMenu() {
           <button className='footer-buttons'>Profile</button>
         </Link>
       </div>
-    </div>
+    </span>
   )
 }
