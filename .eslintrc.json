@@ -1,75 +1,125 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:react/jsx-runtime",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking"
+  ],
+  "overrides": [],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
     },
-    "extends": [
-        "eslint:recommended",
-        "plugin:react/recommended",
-        "plugin:react-hooks/recommended",
-        "plugin:react/jsx-runtime",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:@typescript-eslint/recommended-requiring-type-checking",
-        "plugin:prettier/recommended"
-      ],
-    "overrides": [
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "project": [
+      "./tsconfig.json"
+    ]
+  },
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "react-hooks",
+    "import"
+  ],
+  "rules": {
+    "no-console": [
+      "warn",
+      {
+        "allow": [
+          "warn",
+          "error"
+        ]
+      }
     ],
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaFeatures": {
-          "jsx": true
-        },
-        "ecmaVersion": "latest",
-        "sourceType": "module",
-        "project": ["./tsconfig.json"]
-      },
-    "plugins": [
-        "react",
-        "@typescript-eslint",
-        "react-hooks",
-        "import"
-      ],
-    "rules": {
-        "no-console": ["warn", { "allow": ["warn", "error"] }],
-        "object-curly-spacing": ["error", "always"],
-        "array-bracket-spacing": ["error", "always"],
-        "no-trailing-spaces": "error",
-        "eol-last": ["error", "always"],
-        "quotes": ["error", "single"],
-        "semi": ["warn", "never"],
-        "indent": ["warn", 2, { "SwitchCase": 1 }],
-        "key-spacing": "error",
-        "eqeqeq": ["error", "smart"],
-        "comma-dangle": ["error", "never"],
-        "no-multiple-empty-lines": ["error", { "max": 6, "maxEOF": 0, "maxBOF": 1 }],
-        "react/prop-types": "error",
-        "react/no-array-index-key": "error",
-        "react/self-closing-comp": "error",
-        "react/no-danger": "error",
-        "react/jsx-closing-tag-location": "error",
-        "react/jsx-closing-bracket-location": ["error", "line-aligned"],
-        "react/no-string-refs": "warn",
-        "react/jsx-no-target-blank": "off", // all major browsers already behave as if rel="no opener" is set
-        "import/first": "error",
-        "import/no-duplicates": "error",
-        "import/order": [
-          "error",
+    "object-curly-spacing": [
+      "error",
+      "always"
+    ],
+    "array-bracket-spacing": [
+      "error",
+      "always"
+    ],
+    "no-trailing-spaces": "error",
+    "eol-last": [
+      "error",
+      "always"
+    ],
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "semi": [
+      "warn",
+      "never"
+    ],
+    "indent": [
+      "warn",
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "key-spacing": "error",
+    "eqeqeq": [
+      "error",
+      "smart"
+    ],
+    "comma-dangle": [
+      "error",
+      "never"
+    ],
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 6,
+        "maxEOF": 0,
+        "maxBOF": 1
+      }
+    ],
+    "react/prop-types": "error",
+    "react/no-array-index-key": "error",
+    "react/self-closing-comp": "error",
+    "react/no-danger": "error",
+    "react/jsx-closing-tag-location": "error",
+    "react/jsx-closing-bracket-location": [
+      "error",
+      "line-aligned"
+    ],
+    "react/no-string-refs": "warn",
+    "react/jsx-no-target-blank": "off", // all major browsers already behave as if rel="no opener" is set
+    "import/first": "error",
+    "import/no-duplicates": "error",
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal"
+        ],
+        "pathGroups": [
           {
-            "groups": ["builtin", "external", "internal"],
-            "pathGroups": [
-              {
-                "pattern": "react",
-                "group": "external",
-                "position": "before"
-              }
-            ],
-            "pathGroupsExcludedImportTypes": ["react"],
-            "newlines-between": "always"
+            "pattern": "react",
+            "group": "external",
+            "position": "before"
           }
         ],
-        "import/newline-after-import": "error",
-        "react-hooks/rules-of-hooks": "error",
-        "react-hooks/exhaustive-deps": "warn"
+        "pathGroupsExcludedImportTypes": [
+          "react"
+        ],
+        "newlines-between": "always"
       }
-      
+    ],
+    "import/newline-after-import": "error",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
+  }
 }

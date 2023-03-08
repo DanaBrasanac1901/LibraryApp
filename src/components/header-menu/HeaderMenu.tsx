@@ -19,6 +19,9 @@ export function HeaderMenu({ children }: Props) {
         <Link to='/registration'>
           <button className='header-buttons'>Sign Up</button>
         </Link>
+        <Link to='/'>
+          <button className='header-buttons'>Sign Up</button>
+        </Link>
       </div>
     </div>
   )

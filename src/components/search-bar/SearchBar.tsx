@@ -3,10 +3,10 @@ import './search-bar.css'
 
 export function SearchBar() {
   return (
-    <div className='search_bar'>
-      <input className='search_bar_input' />
-      <button className='search_button'>
-        <ImSearch className='search_button_icon' />
+    <div className='search-bar'>
+      <input className='search-bar-input' />
+      <button className='search-button'>
+        <ImSearch className='search-button-icon' />
       </button>
     </div>
   )
