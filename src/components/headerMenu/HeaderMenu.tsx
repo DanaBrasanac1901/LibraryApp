@@ -1,6 +1,6 @@
 import { Dispatch, ReactNode, SetStateAction } from 'react'
 
-import { Link, useLocation } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 import './headerMenu.css'
 
@@ -11,7 +11,6 @@ interface Props {
 }
 
 export function HeaderMenu({ children, isAuthenticated, setAuthenticated }: Props ) {
-  const location = useLocation( )
   const SignOut = () => {
     sessionStorage.clear()
     setAuthenticated(false)
@@ -21,12 +20,12 @@ export function HeaderMenu({ children, isAuthenticated, setAuthenticated }: Prop
       {children}
       <div className='header-routing-buttons'>
         {isAuthenticated ?
-          <Link to='/'>
+          <NavLink to='/'>
             <button className='header-buttons' onClick={() => SignOut()}>Sign Out</button>
-          </Link>:
-          <Link to='/login' >
+          </NavLink>:
+          <NavLink to='/login' >
             <button className='header-buttons'>Sign in</button>
-          </Link>
+          </NavLink>
         }
       </div>
     </div>

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import './sideMenu.css'
 
 
@@ -6,15 +6,15 @@ export function SideMenu({ isAuthenticated }: {isAuthenticated : boolean}) {
   return (
     <div className='side-menu'>
       <div>
-        <Link to='/'>
+        <NavLink to='/'>
           <button className='side-menu-buttons'>Home</button>
-        </Link>
+        </NavLink>
       </div>
       { isAuthenticated &&
       <div>
-        <Link to='/profile'>
+        <NavLink to='/profile'>
           <button className='side-menu-buttons'>Profile</button>
-        </Link>
+        </NavLink>
       </div> }
     </div>
   )

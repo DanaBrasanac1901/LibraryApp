@@ -38,7 +38,7 @@ function App() {
         <Routes>
           <Route path='/' element={<HomePage />} />
           <Route path='details' element={<BookDetails />} />
-          <Route path='profile' element={<ProfilePage />} />
+          <Route path='profile' element={<ProfilePage setAuthenticated={setAuthenticated} />} />
           <Route path='login' element={<LoginPage setAuthenticated={setAuthenticated} />} />
         </Routes>
       </div>

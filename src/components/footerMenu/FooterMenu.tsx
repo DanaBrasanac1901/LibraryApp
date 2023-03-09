@@ -1,21 +1,21 @@
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import './footerMenu.css'
 
 export function FooterMenu({ isAuthenticated }:{ isAuthenticated:boolean }) {
   return (
     <span className='footer'>
       <div>
-        <Link to='/'>
+        <NavLink to='/'>
           <button className='footer-buttons'>Home</button>
-        </Link>
+        </NavLink>
       </div>
       {isAuthenticated ?
-        <Link to='/profile'>
+        <NavLink to='/profile'>
           <button className='footer-buttons'>Profile</button>
-        </Link>:
-        <Link to='/login' >
+        </NavLink>:
+        <NavLink to='/login' >
           <button className='footer-buttons'>Sign in</button>
-        </Link>
+        </NavLink>
       }
     </span>
   )
