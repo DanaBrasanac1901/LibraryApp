@@ -12,7 +12,7 @@ import { HeaderMenu } from './components/header-menu/HeaderMenu'
 import { SearchBar } from './components/search-bar/SearchBar'
 import { LoginPage } from './pages/login-page/LoginPage'
 
-import './app.css'
+import './App.css'
 
 function App() {
   const location = useLocation()
