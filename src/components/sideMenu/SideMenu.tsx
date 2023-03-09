@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import './side-menu.css'
+import './sideMenu.css'
 
 
 export function SideMenu({ isAuthenticated }: {isAuthenticated : boolean}) {

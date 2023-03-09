@@ -2,15 +2,15 @@ import { useState } from 'react'
 
 import { Routes, Route, useLocation } from 'react-router-dom'
 
-import { HomePage } from './pages/home-page/HomePage'
-import { BookDetails } from './pages/book-details/BookDetails'
-import { FooterMenu } from './components/footer-menu/FooterMenu'
-import { ProfilePage } from './pages/profile-page/ProfilePage'
-import { SideMenu } from './components/side-menu/SideMenu'
+import { HomePage } from './pages/homePage/HomePage'
+import { BookDetails } from './pages/bookDetails/BookDetails'
+import { FooterMenu } from './components/footerMenu/FooterMenu'
+import { ProfilePage } from './pages/profilePage/ProfilePage'
+import { SideMenu } from './components/sideMenu/SideMenu'
 import { ConditionalWrapper } from './components/ConditionalWrapper'
-import { HeaderMenu } from './components/header-menu/HeaderMenu'
-import { SearchBar } from './components/search-bar/SearchBar'
-import { LoginPage } from './pages/login-page/LoginPage'
+import { HeaderMenu } from './components/headerMenu/HeaderMenu'
+import { SearchBar } from './components/searchBar/SearchBar'
+import { LoginPage } from './pages/loginPage/LoginPage'
 
 import './App.css'
 

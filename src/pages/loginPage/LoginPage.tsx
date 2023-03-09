@@ -3,8 +3,8 @@ import { Dispatch, SetStateAction, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { LoginCredentials } from '../../interfaces/LogInCredentials'
-import { logIn } from '../../services/login-service'
-import './login-page.css'
+import { logIn } from '../../services/loginService'
+import './loginPage.css'
 
 
 export function LoginPage({ setAuthenticated }: {setAuthenticated: Dispatch<SetStateAction<boolean>> }) {

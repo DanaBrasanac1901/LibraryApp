@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import './footer-menu.css'
+import './footerMenu.css'
 
 export function FooterMenu({ isAuthenticated }:{ isAuthenticated:boolean }) {
   return (

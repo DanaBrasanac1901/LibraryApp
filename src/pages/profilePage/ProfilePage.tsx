@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-import './profile-page.css'
+import './profilePage.css'
 
 export function ProfilePage() {
   const LogOut = () => sessionStorage.clear()

@@ -1,16 +1,17 @@
 import { Dispatch, ReactNode, SetStateAction } from 'react'
 
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
-import './header-menu.css'
+import './headerMenu.css'
 
 interface Props {
-  children: ReactNode
+  children?: ReactNode
   isAuthenticated:boolean,
   setAuthenticated:Dispatch<SetStateAction<boolean>>
 }
 
 export function HeaderMenu({ children, isAuthenticated, setAuthenticated }: Props ) {
+  const location = useLocation( )
   const SignOut = () => {
     sessionStorage.clear()
     setAuthenticated(false)
