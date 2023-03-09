@@ -1,9 +1,8 @@
 import { Link } from 'react-router-dom'
 import './side-menu.css'
 
-export function SideMenu() {
 
-  const SignOut = () => sessionStorage.clear()
+export function SideMenu({ isAuthenticated }: {isAuthenticated : boolean}) {
   return (
     <div className='side-menu'>
       <div>
@@ -11,16 +10,12 @@ export function SideMenu() {
           <button className='side-menu-buttons'>Home</button>
         </Link>
       </div>
+      { isAuthenticated &&
       <div>
         <Link to='/profile'>
           <button className='side-menu-buttons'>Profile</button>
         </Link>
-      </div>
-      <div>
-        <Link to='/'>
-          <button className='side-menu-buttons' onClick={() => SignOut()}>Home</button>
-        </Link>
-      </div>
+      </div> }
     </div>
   )
 }

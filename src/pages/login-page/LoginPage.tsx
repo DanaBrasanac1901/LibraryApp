@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 
 import { useNavigate } from 'react-router-dom'
 
@@ -6,12 +6,12 @@ import { LoginCredentials } from '../../interfaces/LogInCredentials'
 import { logIn } from '../../services/login-service'
 import './login-page.css'
 
-export function LoginPage() {
+
+export function LoginPage({ setAuthenticated }: {setAuthenticated: Dispatch<SetStateAction<boolean>> }) {
 
   const [ email, setEmail ] = useState<string>('')
   const [ password, setPassword ] = useState<string>('')
   const navigate = useNavigate()
-  const valid = true
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event?.preventDefault()
@@ -24,10 +24,11 @@ export function LoginPage() {
       sessionStorage.setItem('accessToken', response.data.accessToken)
       sessionStorage.setItem('expiration', response.data.expiration)
       sessionStorage.setItem('refreshToken', response.data.refreshToken)
+      setAuthenticated(true)
       navigate('/')
     }
     catch(error){
-      console.log(error)
+      error
     }
   }
   return (
