@@ -1,0 +1,35 @@
+.login-page{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-page-content{
+    display: flex;
+    flex-direction: column;
+}
+
+.login-page-input{
+    border-radius: 15px;
+    margin-top: 30px;
+    font-family: Calibri;
+    font-size: large;
+
+}
+
+.login-page-label{
+    margin-top: 30px;
+    font-family: Calibri;
+    font-size: large;
+}
+
+.login-page-button{
+    margin-top: 30px;
+    background-color: grey;
+    color: white;
+    font-size: larger;
+    border-radius: 15px;
+    border: solid;
+    margin: 30px 5px;
+}

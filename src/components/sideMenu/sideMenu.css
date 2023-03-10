@@ -1,13 +1,19 @@
-.side-menu{
+.side-menu {
     height: 100%;
     background-color: #32263f;
     flex-direction: column;
     width: 140px;
 }
 
-.side-menu-buttons{
+.side-menu-buttons {
     background-color: #32263f;
     font-size: larger;
     color: white;
     margin-top: 5px;
+    border: none;
+}
+
+.side-menu-buttons:hover {
+    border-radius: 15px;
+    border: solid;
 }

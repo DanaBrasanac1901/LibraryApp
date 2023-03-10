@@ -1,40 +1,43 @@
-import { Routes, Route } from 'react-router-dom'
+import { useState } from 'react'
 
-import { HomePage } from './pages/home-page/HomePage'
-import { BookDetails } from './pages/book-details/BookDetails'
-import { FooterMenu } from './components/footer-menu/FooterMenu'
-import { ProfilePage } from './pages/profile-page/ProfilePage'
-import { SideMenu } from './components/side-menu/SideMenu'
+import { useLocation } from 'react-router-dom'
+
+import { FooterMenu } from './components/footerMenu/FooterMenu'
+import { SideMenu } from './components/sideMenu/SideMenu'
 import { ConditionalWrapper } from './components/ConditionalWrapper'
-import { HeaderMenu } from './components/header-menu/HeaderMenu'
-import { SearchBar } from './components/search-bar/SearchBar'
-
-import './app.css'
+import { HeaderMenu } from './components/headerMenu/HeaderMenu'
+import { SearchBar } from './components/searchBar/SearchBar'
+import './App.css'
+import { AppRouter } from './router/AppRouter'
+import { isUserAuthenticated } from './services/SessionStorageService'
 
 function App() {
+  const location = useLocation()
+  const [ isAuthenticated, setIsAuthenticated ] =  useState(isUserAuthenticated())
+  const notLoginRoute = () => {
+    return location.pathname !== '/login'
+  }
   return (
     <div className='app'>
       <header className='app-header'>
-        <ConditionalWrapper
-          condition={screen.availWidth > 768}
-          wrapper={(children) => (
-            <HeaderMenu>
-              <SearchBar />
-            </HeaderMenu>
-          )}
-        >
-          <SearchBar />
-        </ConditionalWrapper>
+        {notLoginRoute() && (
+          <ConditionalWrapper
+            condition={screen.availWidth > 768}
+            wrapper={(children) => (
+              <HeaderMenu isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated}>
+                <SearchBar />
+              </HeaderMenu>
+            )}
+          >
+            <SearchBar />
+          </ConditionalWrapper>
+        )}
       </header>
       <div className='app-view'>
-        <SideMenu />
-        <Routes>
-          <Route path='/' element={<HomePage />} />
-          <Route path='details' element={<BookDetails />} />
-          <Route path='profile' element={<ProfilePage />} />
-        </Routes>
+        {notLoginRoute() && <SideMenu isAuthenticated = {isAuthenticated}/>}
+        <AppRouter  setIsAuthenticated={setIsAuthenticated} />
       </div>
-      <FooterMenu />
+      {notLoginRoute() && <FooterMenu isAuthenticated={isAuthenticated} />}
     </div>
   )
 }
