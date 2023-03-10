@@ -1,19 +1,12 @@
-import { Dispatch, ReactNode, SetStateAction } from 'react'
-
 import { NavLink } from 'react-router-dom'
 
+import { HeaderMenuProps } from '../../interfaces/HeaderMenuProps'
 import './headerMenu.css'
 
-interface Props {
-  children?: ReactNode
-  isAuthenticated:boolean,
-  setAuthenticated:Dispatch<SetStateAction<boolean>>
-}
-
-export function HeaderMenu({ children, isAuthenticated, setAuthenticated }: Props ) {
-  const SignOut = () => {
+export function HeaderMenu({ children, isAuthenticated, setIsAuthenticated }: HeaderMenuProps ) {
+  const signOut = () => {
     sessionStorage.clear()
-    setAuthenticated(false)
+    setIsAuthenticated(false)
   }
   return (
     <div className='header-menu'>
@@ -21,7 +14,7 @@ export function HeaderMenu({ children, isAuthenticated, setAuthenticated }: Prop
       <div className='header-routing-buttons'>
         {isAuthenticated ?
           <NavLink to='/'>
-            <button className='header-buttons' onClick={() => SignOut()}>Sign Out</button>
+            <button className='header-buttons' onClick={signOut}>Sign Out</button>
           </NavLink>:
           <NavLink to='/login' >
             <button className='header-buttons'>Sign in</button>

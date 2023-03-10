@@ -1,19 +1,20 @@
-.footer{
-    position:absolute;
+.footer {
+    position: absolute;
     bottom: 0;
     width: 100%;
     background-color: grey;
     color: white;
     height: 8vh;
-    justify-content:space-evenly;
+    justify-content: space-evenly;
     align-items: center;
     display: flex;
 }
 
-.footer-buttons{
+.footer-buttons {
     background-color: grey;
     color: white;
     font-size: larger;
     border-radius: 15px;
     border: solid;
+    text-decoration: none;
 }

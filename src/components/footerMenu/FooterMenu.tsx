@@ -1,14 +1,14 @@
 import { NavLink } from 'react-router-dom'
+
+import { FooterMenuProps } from '../../interfaces/FooterMenuProps'
 import './footerMenu.css'
 
-export function FooterMenu({ isAuthenticated }:{ isAuthenticated:boolean }) {
+export function FooterMenu({ isAuthenticated }:FooterMenuProps) {
   return (
-    <span className='footer'>
-      <div>
-        <NavLink to='/'>
-          <button className='footer-buttons'>Home</button>
-        </NavLink>
-      </div>
+    <footer className='footer'>
+      <NavLink to='/'>
+        <button className='footer-buttons'>Home</button>
+      </NavLink>
       {isAuthenticated ?
         <NavLink to='/profile'>
           <button className='footer-buttons'>Profile</button>
@@ -17,6 +17,6 @@ export function FooterMenu({ isAuthenticated }:{ isAuthenticated:boolean }) {
           <button className='footer-buttons'>Sign in</button>
         </NavLink>
       }
-    </span>
+    </footer>
   )
 }

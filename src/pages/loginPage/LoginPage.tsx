@@ -1,16 +1,17 @@
-import { Dispatch, SetStateAction, useState } from 'react'
+import { useState } from 'react'
 
 import { useNavigate } from 'react-router-dom'
 
 import { LoginCredentials } from '../../interfaces/LogInCredentials'
+import { LoginPageProps } from '../../interfaces/LoginPageProps'
 import { logIn } from '../../services/loginService'
+import { getSessionStorageData, setSessionStorage } from '../../services/SessionStorageService'
 import './loginPage.css'
 
+export function LoginPage({ setIsAuthenticated }: LoginPageProps) {
 
-export function LoginPage({ setAuthenticated }: {setAuthenticated: Dispatch<SetStateAction<boolean>> }) {
-
-  const [ email, setEmail ] = useState<string>('')
-  const [ password, setPassword ] = useState<string>('')
+  const [ email, setEmail ] = useState('')
+  const [ password, setPassword ] = useState('')
   const navigate = useNavigate()
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -20,11 +21,9 @@ export function LoginPage({ setAuthenticated }: {setAuthenticated: Dispatch<SetS
       password: password
     }
     try{
-      const response = await logIn(data)
-      sessionStorage.setItem('accessToken', response.data.accessToken)
-      sessionStorage.setItem('expiration', response.data.expiration)
-      sessionStorage.setItem('refreshToken', response.data.refreshAccessToken)
-      setAuthenticated(true)
+      setSessionStorage(await logIn(data))
+      if(getSessionStorageData() === null) throw Error
+      setIsAuthenticated(true)
       navigate('/')
     }
     catch(error){

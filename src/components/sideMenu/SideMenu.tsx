@@ -1,8 +1,10 @@
 import { NavLink } from 'react-router-dom'
+
+import { SideMenuProps } from '../../interfaces/SideMenuProps'
 import './sideMenu.css'
 
 
-export function SideMenu({ isAuthenticated }: {isAuthenticated : boolean}) {
+export function SideMenu({ isAuthenticated }: SideMenuProps) {
   return (
     <div className='side-menu'>
       <div>
