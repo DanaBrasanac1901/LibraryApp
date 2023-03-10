@@ -5,12 +5,22 @@ import { LoginResponse } from '../interfaces/LogInResponse'
 
 export const setSessionStorage = (tokenData: AxiosResponse<LoginResponse>) => {
 
-  sessionStorage.setItem('tokenData', JSON.stringify(tokenData))
+  sessionStorage.setItem('accessToken', tokenData.data.accessToken)
+  sessionStorage.setItem('expiration', tokenData.data.expiration)
+  sessionStorage.setItem('refreshAccessToken', tokenData.data.refreshToken)
 
 }
 
-export const getSessionStorageData = () => {
-  return JSON.parse(sessionStorage.getItem('tokenData') ?? '{}') as LoginResponse | null
+export const getAccessToken = () => {
+  return sessionStorage.getItem('accessToken')
+}
+
+export const getRefreshAccessToken = () => {
+  return sessionStorage.getItem('refreshAccessToken')
+}
+
+export const getTokenExpiration = () => {
+  return sessionStorage.getItem('expiration')
 }
 
 export const clearSessionStorage = () => {
@@ -18,5 +28,5 @@ export const clearSessionStorage = () => {
 }
 
 export const isUserAuthenticated = () => {
-  return getSessionStorageData()?.accessToken !== undefined
+  return getAccessToken() !== null
 }

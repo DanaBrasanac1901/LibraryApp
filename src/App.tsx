@@ -9,10 +9,11 @@ import { HeaderMenu } from './components/headerMenu/HeaderMenu'
 import { SearchBar } from './components/searchBar/SearchBar'
 import './App.css'
 import { AppRouter } from './router/AppRouter'
+import { isUserAuthenticated } from './services/SessionStorageService'
 
 function App() {
   const location = useLocation()
-  const [ isAuthenticated, setIsAuthenticated ] =  useState(false)
+  const [ isAuthenticated, setIsAuthenticated ] =  useState(isUserAuthenticated())
   const notLoginRoute = () => {
     return location.pathname !== '/login'
   }

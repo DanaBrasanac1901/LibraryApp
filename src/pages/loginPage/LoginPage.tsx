@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { LoginCredentials } from '../../interfaces/LogInCredentials'
 import { LoginPageProps } from '../../interfaces/LoginPageProps'
 import { logIn } from '../../services/loginService'
-import { getSessionStorageData, setSessionStorage } from '../../services/SessionStorageService'
+import { isUserAuthenticated, setSessionStorage } from '../../services/SessionStorageService'
 import './loginPage.css'
 
 export function LoginPage({ setIsAuthenticated }: LoginPageProps) {
@@ -22,7 +22,7 @@ export function LoginPage({ setIsAuthenticated }: LoginPageProps) {
     }
     try{
       setSessionStorage(await logIn(data))
-      if(getSessionStorageData() === null) throw Error
+      if (!isUserAuthenticated()) throw Error
       setIsAuthenticated(true)
       navigate('/')
     }

@@ -1,11 +1,12 @@
 import { NavLink } from 'react-router-dom'
 
 import { HeaderMenuProps } from '../../interfaces/HeaderMenuProps'
+import { clearSessionStorage } from '../../services/SessionStorageService'
 import './headerMenu.css'
 
 export function HeaderMenu({ children, isAuthenticated, setIsAuthenticated }: HeaderMenuProps ) {
   const signOut = () => {
-    sessionStorage.clear()
+    clearSessionStorage()
     setIsAuthenticated(false)
   }
   return (

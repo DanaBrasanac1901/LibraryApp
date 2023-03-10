@@ -5,7 +5,7 @@ import './footerMenu.css'
 
 export function FooterMenu({ isAuthenticated }:FooterMenuProps) {
   return (
-    <footer className='footer'>
+    <div className='footer'>
       <NavLink to='/'>
         <button className='footer-buttons'>Home</button>
       </NavLink>
@@ -17,6 +17,6 @@ export function FooterMenu({ isAuthenticated }:FooterMenuProps) {
           <button className='footer-buttons'>Sign in</button>
         </NavLink>
       }
-    </footer>
+    </div>
   )
 }
