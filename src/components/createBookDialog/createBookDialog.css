@@ -1,0 +1,13 @@
+.create-book-modal{
+    height: 400px;
+    display: flex;
+    position: fixed;
+    border: solid  darkblue;
+    border-radius: 15px;
+    background-color: darkgray;
+}
+
+.create-book-dialog-buttons{
+    display: flex;
+    justify-content: space-evenly;
+}

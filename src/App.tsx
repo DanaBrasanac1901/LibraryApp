@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { useLocation } from 'react-router-dom'
 
@@ -10,10 +10,12 @@ import { SearchBar } from './components/searchBar/SearchBar'
 import './App.css'
 import { AppRouter } from './router/AppRouter'
 import { isUserAuthenticated } from './services/SessionStorageService'
+import { CreateBookDialog } from './components/createBookDialog/CreateBookDialog'
 
 function App() {
   const location = useLocation()
   const [ isAuthenticated, setIsAuthenticated ] =  useState(isUserAuthenticated())
+  const [ showCreateBookDialog, setShowCreateBookDialog ] = useState(false)
   const notLoginRoute = () => {
     return location.pathname !== '/login'
   }
@@ -34,7 +36,11 @@ function App() {
         )}
       </header>
       <div className='app-view'>
-        {notLoginRoute() && <SideMenu isAuthenticated = {isAuthenticated}/>}
+        {notLoginRoute() &&
+        <SideMenu isAuthenticated = {isAuthenticated} setShowCreateBookDialog = {setShowCreateBookDialog} />}
+        <div>
+        <CreateBookDialog showCreateBookDialog = { showCreateBookDialog } setShowCreateBookDialog = {setShowCreateBookDialog} />
+        </div>
         <AppRouter  setIsAuthenticated={setIsAuthenticated} />
       </div>
       {notLoginRoute() && <FooterMenu isAuthenticated={isAuthenticated} />}
