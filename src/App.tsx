@@ -7,10 +7,10 @@ import { SideMenu } from './components/sideMenu/SideMenu'
 import { ConditionalWrapper } from './components/ConditionalWrapper'
 import { HeaderMenu } from './components/headerMenu/HeaderMenu'
 import { SearchBar } from './components/searchBar/SearchBar'
-import './App.css'
 import { AppRouter } from './router/AppRouter'
 import { isUserAuthenticated } from './services/SessionStorageService'
 import { CreateBookDialog } from './components/createBookDialog/CreateBookDialog'
+import './App.css'
 
 function App() {
   const location = useLocation()
@@ -38,7 +38,7 @@ function App() {
       <div className='app-view'>
         {notLoginRoute() &&
         <SideMenu isAuthenticated = {isAuthenticated} setShowCreateBookDialog = {setShowCreateBookDialog} />}
-        <div>
+        <div className='app-modal-dialog'>
         <CreateBookDialog showCreateBookDialog = { showCreateBookDialog } setShowCreateBookDialog = {setShowCreateBookDialog} />
         </div>
         <AppRouter  setIsAuthenticated={setIsAuthenticated} />

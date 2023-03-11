@@ -1,8 +1,11 @@
 .create-book-modal{
     height: 400px;
+    width: 400px;
+    justify-content: center;
     display: flex;
     position: fixed;
-    border: solid  darkblue;
+    border: solid #32263f;
+    font-size: larger;
     border-radius: 15px;
     background-color: darkgray;
 }
@@ -10,4 +13,24 @@
 .create-book-dialog-buttons{
     display: flex;
     justify-content: space-evenly;
+}
+
+.create-book-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+input[type='text']{
+    font-size: larger;
+    border-radius: 15px;
+    border: none;
+    border-bottom: solid dimgray 3px;
+}
+
+.create-book-combobox{
+    border-radius: 15px;
+    font-size: larger;
+    border: none;
+    border-bottom: solid dimgray 3px;
 }
