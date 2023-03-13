@@ -1,16 +1,16 @@
-.header-menu{
+.header-menu {
     width: 100%;
-    background-color: grey;
+    background-color: rgb(85, 82, 82);
     color: white;
     height: 8vh;
-    justify-content:flex-end;
+    justify-content: flex-end;
     align-items: center;
     border-bottom: solid black;
     display: flex;
 }
 
-.header-buttons{
-    background-color: grey;
+.header-buttons {
+    background-color: rgb(85, 82, 82);
     color: white;
     margin: 0px 5px;
 }

@@ -3,37 +3,28 @@
   height: 100vh;
 }
 
-.app-view{
+.app-view {
   display: flex;
   height: 100vh;
   width: 100%;
 }
 
-button{
+button {
   border: solid;
   border-radius: 15px;
   font-size: larger;
 }
 
-.side-menu{
+.side-menu {
   display: none;
-}
-
-.app-modal-dialog{
-  display: flex;
-  position: absolute;
-  margin-left: 40%;
-  margin-top: 5%;
 }
 
 @media only screen and (min-width: 768px) {
- .footer{
-  display: none;
- }
- .side-menu{
-  display: inline;
- }
+  .footer {
+    display: none;
+  }
+
+  .side-menu {
+    display: inline;
+  }
 }
-
-
-

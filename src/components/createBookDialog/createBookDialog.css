@@ -1,36 +1,95 @@
-.create-book-modal{
-    height: 400px;
+.modal-dialog-overlay {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(109, 91, 124, 0.644);
+    z-index: 1;
+}
+
+label {
+    margin-bottom: 5px;
+}
+
+select {
+    outline: none;
+}
+
+select::-webkit-scrollbar {
+    width: 20px;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+select::-webkit-scrollbar-track {
+    background: rgb(238, 235, 231);
+    border-radius: 15px;
+}
+
+select::-webkit-scrollbar-thumb {
+    background: rgba(109, 91, 124, 0.644);
+    border-radius: 10px;
+}
+
+.create-book-modal {
+    height: fit-content;
     width: 400px;
     justify-content: center;
     display: flex;
-    position: fixed;
     border: solid #32263f;
+    color: white;
     font-size: larger;
+    margin-top: 40%;
     border-radius: 15px;
-    background-color: darkgray;
+    background-color: #6F4D94;
 }
 
-.create-book-dialog-buttons{
+.create-book-dialog-buttons {
+    margin-top: 10px;
+    margin-bottom: 10px;
     display: flex;
     justify-content: space-evenly;
+    font-size: medium;
 }
 
-.create-book-form{
+.create-book-button {
+    color: white;
+    background-color: #6F4D94;
+}
+
+.create-book-form {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
 }
 
-input[type='text']{
-    font-size: larger;
+input[type='text'] {
+    font-size: large;
     border-radius: 15px;
     border: none;
-    border-bottom: solid dimgray 3px;
+    background-color: rgb(238, 235, 231);
+    border-bottom: solid rgba(37, 36, 36, 0.581) 3px;
 }
 
-.create-book-combobox{
+input[type='date'] {
+    font-size: large;
     border-radius: 15px;
-    font-size: larger;
     border: none;
-    border-bottom: solid dimgray 3px;
+    background-color: rgb(238, 235, 231);
+    border-bottom: solid rgba(37, 36, 36, 0.581) 3px;
+}
+
+.create-book-combo {
+    border-radius: 15px;
+    font-size: large;
+    border: none;
+    background-color: rgb(238, 235, 231);
+    border-bottom: solid rgba(37, 36, 36, 0.581) 3px;
+}
+
+@media only screen and (min-width: 768px) {
+    .create-book-modal {
+        margin: 10% 35%;
+    }
 }

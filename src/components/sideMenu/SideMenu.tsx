@@ -4,10 +4,7 @@ import { SideMenuProps } from '../../interfaces/SideMenuProps'
 import './sideMenu.css'
 
 
-export function SideMenu({ isAuthenticated, setShowCreateBookDialog }: SideMenuProps) {
-  const showDialog = () =>{
-    setShowCreateBookDialog(true)
-  }
+export function SideMenu({ isAuthenticated }: SideMenuProps) {
   return (
     <div className='side-menu'>
       <div>
@@ -21,9 +18,6 @@ export function SideMenu({ isAuthenticated, setShowCreateBookDialog }: SideMenuP
           <button className='side-menu-buttons'>Profile</button>
         </NavLink>
       </div> }
-      <div>
-        <button className='side-menu-buttons' onClick={showDialog}>Add book</button>
-      </div>
     </div>
   )
 }

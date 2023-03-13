@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import { useLocation } from 'react-router-dom'
 
@@ -9,13 +9,13 @@ import { HeaderMenu } from './components/headerMenu/HeaderMenu'
 import { SearchBar } from './components/searchBar/SearchBar'
 import { AppRouter } from './router/AppRouter'
 import { isUserAuthenticated } from './services/SessionStorageService'
-import { CreateBookDialog } from './components/createBookDialog/CreateBookDialog'
 import './App.css'
+import { configureAxios } from './AxiosConfig'
 
+configureAxios()
 function App() {
   const location = useLocation()
   const [ isAuthenticated, setIsAuthenticated ] =  useState(isUserAuthenticated())
-  const [ showCreateBookDialog, setShowCreateBookDialog ] = useState(false)
   const notLoginRoute = () => {
     return location.pathname !== '/login'
   }
@@ -37,10 +37,7 @@ function App() {
       </header>
       <div className='app-view'>
         {notLoginRoute() &&
-        <SideMenu isAuthenticated = {isAuthenticated} setShowCreateBookDialog = {setShowCreateBookDialog} />}
-        <div className='app-modal-dialog'>
-        <CreateBookDialog showCreateBookDialog = { showCreateBookDialog } setShowCreateBookDialog = {setShowCreateBookDialog} />
-        </div>
+        <SideMenu isAuthenticated = {isAuthenticated}/>}
         <AppRouter  setIsAuthenticated={setIsAuthenticated} />
       </div>
       {notLoginRoute() && <FooterMenu isAuthenticated={isAuthenticated} />}

@@ -5,9 +5,9 @@ import { LoginResponse } from '../interfaces/LogInResponse'
 
 export const setSessionStorage = (tokenData: AxiosResponse<LoginResponse>) => {
 
-  sessionStorage.setItem('accessToken', tokenData.data.accessToken)
-  sessionStorage.setItem('expiration', tokenData.data.expiration)
-  sessionStorage.setItem('refreshAccessToken', tokenData.data.refreshToken)
+  sessionStorage.setItem('accessToken', tokenData.data?.AccessToken)
+  sessionStorage.setItem('expiration', tokenData.data?.Expiration)
+  sessionStorage.setItem('refreshAccessToken', tokenData.data?.RefreshToken)
 
 }
 

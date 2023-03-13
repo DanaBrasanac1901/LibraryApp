@@ -1,14 +1,33 @@
-.search-bar-input{
+.search-bar-input {
     font-size: large;
     height: 27px;
     margin-right: 5px;
     border-radius: 15px;
 }
 
-.search-button{
+.search-button {
     height: 30px;
     width: 30px;
-    background-color: grey;
+    background-color: rgb(85, 82, 82);
     color: white;
     border: solid lightgrey;
+}
+
+@media only screen and (min-width: 768px) {
+    .search-button {
+        height: 30px;
+        width: 30px;
+        margin-right: 20px;
+        background-color: rgb(85, 82, 82);
+        color: white;
+        border: solid lightgrey;
+    }
+
+    .search-bar-input {
+        font-size: large;
+        height: 27px;
+        width: 350px;
+        margin-right: 5px;
+        border-radius: 15px;
+    }
 }
