@@ -7,9 +7,8 @@ import { Author } from '../../interfaces/Author'
 import { CreateBookDialogProps } from '../../interfaces/CreateBookDialogProps'
 import { getAllAuthors } from '../../services/AuthorService'
 import { CreateAuthorForm } from '../createAuthorForm/CreateAuthorForm'
-
-
 import './createBookDialog.css'
+import { createBook } from '../../services/BookService'
 
 export function CreateBookDialog({ setShowCreateBookDialog }: CreateBookDialogProps) {
 
@@ -20,8 +19,8 @@ export function CreateBookDialog({ setShowCreateBookDialog }: CreateBookDialogPr
     'Description': '',
     'ISBN': '',
     'Quantity': 0,
-    'PublishDate': Date(),
-    'AuthorIds': Array<string>(),
+    'PublishDate': '',
+    'AuthorIds': [] as string[],
     'Cover': new Blob()
   })
 
@@ -29,9 +28,23 @@ export function CreateBookDialog({ setShowCreateBookDialog }: CreateBookDialogPr
     getAuthorsForSelect().then((data) => setAuthors(data ?? [])).catch(e => console.log(e))
   }, [])
 
-  const createBook = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleBookSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event?.preventDefault()
     console.log(requestData)
+    const formData = new FormData()
+    formData.append('Title', requestData.Title)
+    formData.append('Description', requestData.Description)
+    formData.append('ISBN', requestData.ISBN)
+    formData.append('Quantity', requestData.Quantity.toString())
+    formData.append('Cover', requestData.Cover)
+    formData.append('PublishDate', requestData.PublishDate)
+    formData.append('AuthorIds', requestData.AuthorIds.toString())
+    try{
+      const res = await createBook(formData)
+      console.log(res)
+    }catch(err){
+      err
+    }
   }
 
   const closeDialog = () => {
@@ -54,7 +67,6 @@ export function CreateBookDialog({ setShowCreateBookDialog }: CreateBookDialogPr
     const { name, value } = event.target
     setrequestData({ ...requestData, [name]: value })
   }
-
   const selectChangeHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const values =  Array.from(event.target.selectedOptions, option => option.value)
     setrequestData({ ...requestData, [event.target.name]: values })
@@ -66,22 +78,20 @@ export function CreateBookDialog({ setShowCreateBookDialog }: CreateBookDialogPr
     }
   }
 
-
-
   return (
     <div className='modal-dialog-overlay'>
       <div className='create-book-modal'>
-        <form className='create-book-form' onSubmit={e=> void createBook(e)}>
+        <form className='create-book-form' onSubmit={e=> void handleBookSubmit(e)}>
           <label>Title</label>
-          <input type='text' className='create-book-input' name='Title' onChange={(e)=>inputChangeHandler(e)}/>
+          <input type='text' className='create-book-input' name='Title' required onChange={(e)=>inputChangeHandler(e)}/>
           <label>Description</label>
           <input type='text' className='create-book-input' name='Description' onChange={(e)=>inputChangeHandler(e)}/>
           <label>ISBN</label>
-          <input type='text' className='create-book-input' name='ISBN' onChange={(e)=>inputChangeHandler(e)}/>
+          <input type='text' className='create-book-input' name='ISBN' required onChange={(e)=>inputChangeHandler(e)}/>
           <label>Date published</label>
           <input type='date' className='create-book-input' name='PublishDate' max={moment().format('YYYY-MM-DD')} onChange={(e)=>inputChangeHandler(e)} />
           <label>Quantity</label>
-          <input type='number' className='create-book-input' name='Quantity' min='1' max='50' onChange={(e)=>inputChangeHandler(e)}/>
+          <input type='number' className='create-book-input' required name='Quantity' min='1' max='50' onChange={(e)=>inputChangeHandler(e)}/>
           <label>Add Cover</label>
           <input id='create-book-file-input' name='Cover' className='create-book-input' type='file' onChange={(e) =>handleFileChange(e)} />
           <div className='create-book-icon-label-segment' >
@@ -92,7 +102,7 @@ export function CreateBookDialog({ setShowCreateBookDialog }: CreateBookDialogPr
             <select name='AuthorIds'
               value={requestData.AuthorIds}
               className='create-book-combo'
-              required multiple={true}
+              multiple={true}
               size={3}
               onChange={(e)=> selectChangeHandler(e) }
             >

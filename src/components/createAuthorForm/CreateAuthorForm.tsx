@@ -1,4 +1,7 @@
 import { useState } from 'react'
+
+import { CreateAuthorBody } from '../../interfaces/CreateAuthorBody'
+import { createAuthor } from '../../services/AuthorService'
 import './createAuthorForm.css'
 
 export function CreateAuthorForm () {
@@ -7,9 +10,18 @@ export function CreateAuthorForm () {
     'LastName': ''
   })
 
-  const createAuthor = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleCreateAuthorSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event?.preventDefault()
-    console.log(requestDataAuthor)
+    const author : CreateAuthorBody = {
+      FirstName: requestDataAuthor.FirstName,
+      LastName: requestDataAuthor.LastName
+    }
+    try{
+      await createAuthor(author)
+    }catch(err){
+      err
+    }
+
   }
 
   const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -18,7 +30,7 @@ export function CreateAuthorForm () {
   }
 
   return(
-    <form className='create-author-form' onSubmit={e=> void createAuthor(e)}>
+    <form className='create-author-form' onSubmit={e=> void handleCreateAuthorSubmit(e)}>
       <label>First name</label>
       <input type='text' name='FirstName' onChange={(e)=>inputChangeHandler(e)}/>
       <label>Last name</label>
