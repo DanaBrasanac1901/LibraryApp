@@ -1,0 +1,13 @@
+.create-author-form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.create-author-button {
+    font-size: medium;
+    margin: 8px;
+    color: white;
+    background-color: #6F4D94;
+}
