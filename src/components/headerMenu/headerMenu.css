@@ -3,7 +3,7 @@
     background-color: rgb(85, 82, 82);
     color: white;
     height: 8vh;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     border-bottom: solid black;
     display: flex;
@@ -13,4 +13,19 @@
     background-color: rgb(85, 82, 82);
     color: white;
     margin: 0px 5px;
+}
+
+#header-sign-in-button {
+    display: none;
+}
+
+@media only screen and (min-width: 768px) {
+    #header-sign-in-button {
+        display: flex;
+    }
+
+    .header-buttons {
+        display: flex;
+        justify-content: flex-end;
+    }
 }
