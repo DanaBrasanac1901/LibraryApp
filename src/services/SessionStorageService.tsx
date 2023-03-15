@@ -1,6 +1,8 @@
 import { AxiosResponse } from 'axios'
+import jwt_decode from 'jwt-decode'
 
 import { LoginResponse } from '../interfaces/LogInResponse'
+import { Token } from '../interfaces/Token'
 
 
 export const setSessionStorage = (tokenData: AxiosResponse<LoginResponse>) => {
@@ -29,4 +31,16 @@ export const clearSessionStorage = () => {
 
 export const isUserAuthenticated = () => {
   return getAccessToken() !== null
+}
+
+export const decodeToken = (): Token | null=> {
+  const token = getAccessToken()
+  if(token!==null) return jwt_decode(token)
+  return null
+}
+
+export const isUserAdmin = () => {
+  const token = decodeToken()
+  if(token!== null && token['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']==='Admin') return true
+  else return false
 }

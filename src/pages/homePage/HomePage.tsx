@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import { CreateBookDialog } from '../../components/createBookDialog/CreateBookDialog'
+import { isUserAdmin } from '../../services/SessionStorageService'
 import './homePage.css'
 
 export function HomePage() {
@@ -10,7 +11,7 @@ export function HomePage() {
   }
   return (
     <div className='home-page'>
-      <button onClick={openDialog}>Add book</button>
+      {isUserAdmin() && <button onClick={openDialog}>Add book</button>}
       {showCreateBookDialog && <CreateBookDialog setShowCreateBookDialog = {setShowCreateBookDialog} />}
     </div>
   )

@@ -5,7 +5,7 @@ import { BookDetails } from '../pages/bookDetails/BookDetails'
 import { HomePage } from '../pages/homePage/HomePage'
 import { LoginPage } from '../pages/loginPage/LoginPage'
 import { ProfilePage } from '../pages/profilePage/ProfilePage'
-import PrivateRoutes from './PrivateRoutes'
+import { PrivateRoutes } from './PrivateRoutes'
 
 export function AppRouter({ setIsAuthenticated }: AppRouterProps){
 

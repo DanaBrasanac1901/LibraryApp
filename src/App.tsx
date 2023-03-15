@@ -9,16 +9,19 @@ import { HeaderMenu } from './components/headerMenu/HeaderMenu'
 import { SearchBar } from './components/searchBar/SearchBar'
 import { AppRouter } from './router/AppRouter'
 import { isUserAuthenticated } from './services/SessionStorageService'
-import './App.css'
 import { configureAxios } from './AxiosConfig'
+import './App.css'
 
 configureAxios()
+
 function App() {
   const location = useLocation()
   const [ isAuthenticated, setIsAuthenticated ] =  useState(isUserAuthenticated())
+
   const notLoginRoute = () => {
     return location.pathname !== '/login'
   }
+
   return (
     <div className='app'>
       <header className='app-header'>

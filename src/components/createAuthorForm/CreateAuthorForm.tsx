@@ -5,7 +5,7 @@ import { createAuthor } from '../../services/AuthorService'
 import './createAuthorForm.css'
 
 export function CreateAuthorForm () {
-  const [ requestDataAuthor, setrequestDataAuthor ] = useState({
+  const [ authorData, setAuthorData ] = useState({
     'FirstName': '',
     'LastName': ''
   })
@@ -13,8 +13,8 @@ export function CreateAuthorForm () {
   const handleCreateAuthorSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event?.preventDefault()
     const author : CreateAuthorBody = {
-      FirstName: requestDataAuthor.FirstName,
-      LastName: requestDataAuthor.LastName
+      FirstName: authorData.FirstName,
+      LastName: authorData.LastName
     }
     try{
       await createAuthor(author)
@@ -26,15 +26,15 @@ export function CreateAuthorForm () {
 
   const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target
-    setrequestDataAuthor({ ...requestDataAuthor, [name]: value })
+    setAuthorData({ ...authorData, [name]: value })
   }
 
   return(
     <form className='create-author-form' onSubmit={e=> void handleCreateAuthorSubmit(e)}>
       <label>First name</label>
-      <input type='text' name='FirstName' onChange={(e)=>inputChangeHandler(e)}/>
+      <input type='text' name='FirstName' required onChange={(e)=>inputChangeHandler(e)}/>
       <label>Last name</label>
-      <input type='text' name='LastName' onChange={(e)=>inputChangeHandler(e)}/>
+      <input type='text' name='LastName' required onChange={(e)=>inputChangeHandler(e)}/>
       <button className='create-author-button' type='submit'>Add</button>
     </form>
   )
