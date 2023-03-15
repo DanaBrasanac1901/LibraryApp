@@ -41,6 +41,5 @@ export const decodeToken = (): Token | null=> {
 
 export const isUserAdmin = () => {
   const token = decodeToken()
-  if(token!== null && token['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']==='Admin') return true
-  else return false
+  return token!== null && token['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] ==='Admin'
 }

@@ -19,7 +19,7 @@ export function CreateAuthorForm () {
     try{
       await createAuthor(author)
     }catch(err){
-      err
+      console.log(err)
     }
 
   }

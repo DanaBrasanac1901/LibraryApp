@@ -18,14 +18,14 @@ function App() {
   const location = useLocation()
   const [ isAuthenticated, setIsAuthenticated ] =  useState(isUserAuthenticated())
 
-  const notLoginRoute = () => {
-    return location.pathname !== '/login'
+  const isOnLoginPage = () => {
+    return location.pathname === '/login'
   }
 
   return (
     <div className='app'>
       <header className='app-header'>
-        {notLoginRoute() && (
+        {!isOnLoginPage() && (
           <ConditionalWrapper
             condition={screen.availWidth > 768}
             wrapper={(children) => (
@@ -39,11 +39,11 @@ function App() {
         )}
       </header>
       <div className='app-view'>
-        {notLoginRoute() &&
+        {!isOnLoginPage() &&
         <SideMenu isAuthenticated = {isAuthenticated}/>}
         <AppRouter  setIsAuthenticated={setIsAuthenticated} />
       </div>
-      {notLoginRoute() && <FooterMenu isAuthenticated={isAuthenticated} />}
+      {!isOnLoginPage() && <FooterMenu isAuthenticated={isAuthenticated} />}
     </div>
   )
 }
