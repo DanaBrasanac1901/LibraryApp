@@ -1,0 +1,11 @@
+.book-card {
+    border: purple solid 3px;
+    margin: 15px 15px;
+    width: 350px;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+}

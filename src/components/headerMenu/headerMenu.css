@@ -7,6 +7,7 @@
     align-items: center;
     border-bottom: solid black;
     display: flex;
+    position: fixed;
 }
 
 .header-buttons {
