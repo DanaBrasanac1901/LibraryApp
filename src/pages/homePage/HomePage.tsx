@@ -21,7 +21,7 @@ export function HomePage() {
       TotalCount: 0
     }
   )
-
+  const booksPerPage = 5
   const [ bookData, setBookData ] = useState({
     'Title': '',
     'Description': '',
@@ -32,24 +32,19 @@ export function HomePage() {
     'Cover': new Blob()
   })
 
-  const getNextPage = async () => {
-    try{
-      const res = await getAllBooksPaginated({ pageNumber: page , pageLength: 4 })
-      setAllBooks({ TotalCount: res.data.TotalCount, Items: [ ...allBooks.Items, ...res.data.Items ] })
-      setHasMore(page * 4 < res.data.TotalCount)
-    }catch(err) {
-      console.log(err)
-    }
-  }
-
   useEffect( () => {
-    void getNextPage()
+    getAllBooksPaginated({ pageNumber: page , pageLength: booksPerPage }).then(
+      res=> {
+        setAllBooks({ TotalCount: res.data.TotalCount, Items: [ ...allBooks.Items, ...res.data.Items ] })
+        setHasMore(page*booksPerPage < res.data.TotalCount)
+        console.log(setHasMore)
+        console.log(page*booksPerPage < res.data.TotalCount)
+        console.log(res.data.TotalCount)
+      }).catch(e => console.log(e))
   },[ page ])
 
-
   const nextPage = () => {
-    setPage(page + 1)
-    console.log(page)
+    setPage((previousState) => previousState+=1)
   }
 
   const openDialog = () => {
@@ -81,8 +76,9 @@ export function HomePage() {
         </ModalDialog>}
       <div className='home-page-books'>
         <InfiniteScroll
-          dataLength={allBooks.Items.length}
-          next={nextPage} hasMore={hasMore}
+          dataLength={page*booksPerPage}
+          next={nextPage}
+          hasMore={hasMore}
           loader={
             <div className='infinite-scroll-loader'>
               <p>loading</p>
