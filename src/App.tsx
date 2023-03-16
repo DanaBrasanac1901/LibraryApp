@@ -7,20 +7,25 @@ import { SideMenu } from './components/sideMenu/SideMenu'
 import { ConditionalWrapper } from './components/ConditionalWrapper'
 import { HeaderMenu } from './components/headerMenu/HeaderMenu'
 import { SearchBar } from './components/searchBar/SearchBar'
-import './App.css'
 import { AppRouter } from './router/AppRouter'
 import { isUserAuthenticated } from './services/SessionStorageService'
+import { configureAxios } from './AxiosConfig'
+import './App.css'
+
+configureAxios()
 
 function App() {
   const location = useLocation()
   const [ isAuthenticated, setIsAuthenticated ] =  useState(isUserAuthenticated())
-  const notLoginRoute = () => {
-    return location.pathname !== '/login'
+
+  const isOnLoginPage = () => {
+    return location.pathname === '/login'
   }
+
   return (
     <div className='app'>
       <header className='app-header'>
-        {notLoginRoute() && (
+        {!isOnLoginPage() && (
           <ConditionalWrapper
             condition={screen.availWidth > 768}
             wrapper={(children) => (
@@ -34,10 +39,11 @@ function App() {
         )}
       </header>
       <div className='app-view'>
-        {notLoginRoute() && <SideMenu isAuthenticated = {isAuthenticated}/>}
+        {!isOnLoginPage() &&
+        <SideMenu isAuthenticated = {isAuthenticated}/>}
         <AppRouter  setIsAuthenticated={setIsAuthenticated} />
       </div>
-      {notLoginRoute() && <FooterMenu isAuthenticated={isAuthenticated} />}
+      {!isOnLoginPage() && <FooterMenu isAuthenticated={isAuthenticated} />}
     </div>
   )
 }

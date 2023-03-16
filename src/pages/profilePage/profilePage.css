@@ -8,9 +8,6 @@
 .log-out-button {
     background-color: grey;
     color: white;
-    font-size: larger;
-    border-radius: 15px;
-    border: solid;
 }
 
 @media only screen and (min-width: 768px) {

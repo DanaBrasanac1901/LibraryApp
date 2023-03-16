@@ -2,7 +2,7 @@
     position: absolute;
     bottom: 0;
     width: 100%;
-    background-color: grey;
+    background-color: rgb(85, 82, 82);
     color: white;
     height: 8vh;
     justify-content: space-evenly;
@@ -11,10 +11,7 @@
 }
 
 .footer-buttons {
-    background-color: grey;
+    background-color: rgb(85, 82, 82);
     color: white;
-    font-size: larger;
-    border-radius: 15px;
     border: solid;
-    text-decoration: none;
 }

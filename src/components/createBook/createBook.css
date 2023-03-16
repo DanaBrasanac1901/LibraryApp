@@ -1,0 +1,59 @@
+label {
+    margin-bottom: 5px;
+}
+
+select::-webkit-scrollbar {
+    width: 20px;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+select::-webkit-scrollbar-track {
+    background: rgb(238, 235, 231);
+    border-radius: 15px;
+}
+
+select::-webkit-scrollbar-thumb {
+    background: rgba(109, 91, 124, 0.644);
+    border-radius: 10px;
+}
+
+.book-data-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.book-data-form select {
+    width: 230px;
+    outline: none;
+}
+
+.book-data-input {
+    font-size: large;
+    border-radius: 15px;
+    width: 230px;
+    border: none;
+    background-color: rgb(238, 235, 231);
+    border-bottom: solid rgba(37, 36, 36, 0.581) 3px;
+}
+
+.create-book-icon-label-segment {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon {
+    margin: 5px 5px;
+    width: 30px;
+    height: 30px;
+}
+
+.create-book-combo {
+    border-radius: 15px;
+    font-size: large;
+    border: none;
+    background-color: rgb(238, 235, 231);
+    border-bottom: solid rgba(37, 36, 36, 0.581) 3px;
+}

@@ -5,8 +5,22 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: lavender;
+  background-color: #E6E7FA;
   height: 100vh;
+}
+
+button {
+  border: solid;
+  border-radius: 15px;
+  font-size: larger;
+}
+
+input {
+  font-size: large;
+  border-radius: 15px;
+  border: none;
+  background-color: rgb(238, 235, 231);
+  border-bottom: solid rgba(37, 36, 36, 0.581) 3px;
 }
 
 code {
