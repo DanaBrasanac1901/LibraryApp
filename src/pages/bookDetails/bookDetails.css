@@ -1,0 +1,17 @@
+.book-details-page {
+    width: 100%;
+    display: flex;
+    margin-top: 15%;
+    justify-content: flex-start;
+    align-content: center;
+    flex-direction: column;
+    font-size: large;
+}
+
+#book-details-cover {
+    height: 350px;
+    width: 250px;
+    align-self: center;
+    border: black ridge 3px;
+    margin-bottom: 20px;
+}

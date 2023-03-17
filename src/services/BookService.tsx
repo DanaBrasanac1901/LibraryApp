@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from 'axios'
 
+import { BookDetailsResponse } from '../interfaces/BookDetailsResponse'
 import { GetAllBooksResponse } from '../interfaces/GetAllBooksResponse'
 import { PaginatedBooksRequest } from '../interfaces/PaginatedBooksRequest'
 
@@ -11,5 +12,10 @@ export const createBook = async (formData:FormData) => {
 }
 export const getAllBooksPaginated = async ({ pageNumber, pageLength }: PaginatedBooksRequest) : Promise<AxiosResponse<GetAllBooksResponse>>=> {
   if(url) return axios.get(`${url}Books/paged`, { params: { pageNumber: pageNumber, pageLength: pageLength } } )
+  return Promise.reject(Error('URL not valid'))
+}
+
+export const getBookDetails = async (bookId : number) : Promise<AxiosResponse<BookDetailsResponse>>=> {
+  if(url) return axios.get(`${url}Books/${bookId}`)
   return Promise.reject(Error('URL not valid'))
 }

@@ -1,6 +1,6 @@
 .home-page {
     width: 100%;
-    margin: 5% 5%;
+    margin-top: 5%;
 }
 
 .home-page-books {
@@ -19,6 +19,10 @@
 }
 
 @media only screen and (min-width: 768px) {
+    .home-page {
+        margin: 5% 5%;
+    }
+
     .home-page-books {
         width: 100%;
         justify-content: center;

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 
 import InfiniteScroll from 'react-infinite-scroll-component'
+import { useNavigate } from 'react-router-dom'
 
 import { BookCard } from '../../components/bookCard/BookCard'
 import { CreateBook } from '../../components/createBook/CreateBook'
@@ -12,6 +13,7 @@ import './homePage.css'
 
 export function HomePage() {
 
+  const navigate = useNavigate()
   const [ showCreateBookDialog, setShowCreateBookDialog ] = useState(false)
   const [ page, setPage ] = useState(1)
   const [ hasMore, setHasMore ] = useState(true)
@@ -95,7 +97,7 @@ export function HomePage() {
         >
           <div className='home-page-infinite-scroll-content'>
             {allBooks.Items.map((item) =>
-              (<div key = {item.Id} > <BookCard Title = {item.Title} Isbn={item.Isbn} Cover = {item.Cover} Authors={item.Authors}/></div>))}
+              (<div key = {item.Id} onClick={() => navigate(`book-details/${item.Id}`)}> <BookCard Title = {item.Title} Isbn={item.Isbn} Cover = {item.Cover} Authors={item.Authors}/></div>))}
           </div>
 
         </InfiniteScroll>
