@@ -1,11 +1,34 @@
 .book-card {
-    border: purple solid 3px;
+    border: #1f112e outset 4px;
+    border-radius: 10px;
     margin: 15px 15px;
-    width: 350px;
-    height: 450px;
+    width: 330px;
+    height: 600px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
     align-items: center;
+    background-color: #6F4D94;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding: 8px;
 
+}
+
+#img {
+    height: 380px;
+    width: 250px;
+    object-fit: cover;
+    border: outset black 3px;
+    margin-bottom: 15px;
+}
+
+.author-names {
+    margin: 5px;
+    font-size: large;
+}
+
+.book-card-isbn-segment {
+    margin-top: 6px;
+    font-size: medium;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
 }

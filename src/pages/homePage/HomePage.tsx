@@ -21,7 +21,7 @@ export function HomePage() {
       TotalCount: 0
     }
   )
-  const booksPerPage = 5
+  const booksPerPage = 12
   const [ bookData, setBookData ] = useState({
     'Title': '',
     'Description': '',
@@ -33,15 +33,23 @@ export function HomePage() {
   })
 
   useEffect( () => {
-    getAllBooksPaginated({ pageNumber: page , pageLength: booksPerPage }).then(
-      res=> {
-        setAllBooks({ TotalCount: res.data.TotalCount, Items: [ ...allBooks.Items, ...res.data.Items ] })
-        setHasMore(page*booksPerPage < res.data.TotalCount)
-        console.log(setHasMore)
-        console.log(page*booksPerPage < res.data.TotalCount)
-        console.log(res.data.TotalCount)
-      }).catch(e => console.log(e))
+    fetchBooks()
   },[ page ])
+
+  const fetchBooks = () => {
+    getAllBooksPaginated({ pageNumber: page , pageLength: booksPerPage }).then(
+      res => {
+        setHasMore( page*booksPerPage <= res.data.TotalCount)
+        setAllBooks( (previousState) => {
+          return {
+            ...previousState,
+            TotalCount: res.data.TotalCount,
+            Items: [ ...previousState.Items, ...res.data.Items ]
+          }
+        })
+      }).catch(e => console.log(e))
+
+  }
 
   const nextPage = () => {
     setPage((previousState) => previousState+=1)
@@ -81,11 +89,15 @@ export function HomePage() {
           hasMore={hasMore}
           loader={
             <div className='infinite-scroll-loader'>
-              <p>loading</p>
+              <h2>loading</h2>
             </div>}
-          endMessage={<p>toeto</p>}
-        >{allBooks.Items.map((item) =>
-            (<div key = {item.Id} > <BookCard Title = {item.Title} Isbn={item.Isbn} Cover = {item.Cover} Authors={item.Authors}/></div>))}
+          endMessage={<h2>You have seen all of the books</h2>}
+        >
+          <div className='home-page-infinite-scroll-content'>
+            {allBooks.Items.map((item) =>
+              (<div key = {item.Id} > <BookCard Title = {item.Title} Isbn={item.Isbn} Cover = {item.Cover} Authors={item.Authors}/></div>))}
+          </div>
+
         </InfiniteScroll>
       </div>
     </div>

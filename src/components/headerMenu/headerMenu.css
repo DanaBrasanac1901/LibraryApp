@@ -1,6 +1,7 @@
 .header-menu {
     width: 100%;
     background-color: rgb(85, 82, 82);
+    top: 0px;
     color: white;
     height: 8vh;
     justify-content: center;

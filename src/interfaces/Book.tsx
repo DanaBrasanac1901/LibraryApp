@@ -3,7 +3,7 @@ export interface Book{
     Title: string,
     Description: string,
     Isbn: string,
-    Cover: Blob,
+    Cover?: string,
     PublishDate: string,
     Authors: []
   }
