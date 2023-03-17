@@ -17,7 +17,7 @@ export function CreateBook ({ setBookData, bookData }: CreateBookProps){
 
   useEffect(() => {
     getAuthorsForSelect().then((data) => setAuthors(data ?? [])).catch(e => console.log(e))
-  }, [])
+  }, [ authors ])
 
   const toggleAuthorsForm = () => {
     setShowCreateAuthorForm(!showCreateAuthorForm)

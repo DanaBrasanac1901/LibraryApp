@@ -4,9 +4,7 @@ import { useLocation } from 'react-router-dom'
 
 import { FooterMenu } from './components/footerMenu/FooterMenu'
 import { SideMenu } from './components/sideMenu/SideMenu'
-import { ConditionalWrapper } from './components/ConditionalWrapper'
 import { HeaderMenu } from './components/headerMenu/HeaderMenu'
-import { SearchBar } from './components/searchBar/SearchBar'
 import { AppRouter } from './router/AppRouter'
 import { isUserAuthenticated } from './services/SessionStorageService'
 import { configureAxios } from './AxiosConfig'
@@ -25,18 +23,9 @@ function App() {
   return (
     <div className='app'>
       <header className='app-header'>
-        {!isOnLoginPage() && (
-          <ConditionalWrapper
-            condition={screen.availWidth > 768}
-            wrapper={(children) => (
-              <HeaderMenu isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated}>
-                <SearchBar />
-              </HeaderMenu>
-            )}
-          >
-            <SearchBar />
-          </ConditionalWrapper>
-        )}
+        {!isOnLoginPage() &&
+          <HeaderMenu isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
+        }
       </header>
       <div className='app-view'>
         {!isOnLoginPage() &&

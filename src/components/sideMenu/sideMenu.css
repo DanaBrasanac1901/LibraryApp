@@ -3,6 +3,7 @@
     background-color: #32263f;
     flex-direction: column;
     width: 140px;
+    position: fixed;
 }
 
 .side-menu-buttons {
