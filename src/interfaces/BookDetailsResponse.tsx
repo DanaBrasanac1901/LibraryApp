@@ -1,4 +1,4 @@
-import { Author } from './Author'
+import { AuthorBookDetailsResponse } from './AuthorBookDetailsResponse'
 
 export interface BookDetailsResponse {
 Id : number,
@@ -9,6 +9,6 @@ Quantity : number,
 Available : number,
 Cover? : string,
 PublishDate : string,
-Authors: Author[]
+Authors: AuthorBookDetailsResponse[]
 
 }

@@ -1,4 +1,4 @@
-export interface BookData{
+export interface bookData{
     Title: string;
     Description: string;
     ISBN: string;
@@ -9,6 +9,10 @@ export interface BookData{
 }
 
 export interface CreateBookProps {
-    setBookData: React.Dispatch<React.SetStateAction<BookData>>,
-    bookData: BookData
+    setBookData: React.Dispatch<React.SetStateAction<bookData>>,
+    bookData: bookData
+}
+
+export interface BookFormProps{
+    submitClickEvent: boolean
 }

@@ -6,14 +6,28 @@ import { IoIosAddCircle as AddIcon } from 'react-icons/io'
 import { Author } from '../../interfaces/Author'
 import { getAllAuthors } from '../../services/AuthorService'
 import { CreateAuthorForm } from '../createAuthorForm/CreateAuthorForm'
-import { CreateBookProps } from '../../interfaces/CreateBookProps'
-import './createBook.css'
+import { createBook } from '../../services/BookService'
+import './bookForm.css'
+import { BookFormProps } from '../../interfaces/BookFormProps'
 
 
-export function CreateBook ({ setBookData, bookData }: CreateBookProps){
+export function BookForm({ submitClickEvent }: BookFormProps){
   const [ showCreateAuthorForm, setShowCreateAuthorForm ] = useState(false)
   const [ authors, setAuthors ] = useState<Author[]>([])
+  const [ bookData, setBookData ] = useState({
+    'Title': '',
+    'Description': '',
+    'ISBN': '',
+    'Quantity': 0,
+    'PublishDate': '',
+    'AuthorIds': [] as string[],
+    'Cover': new Blob()
+  })
 
+  useEffect(() => {
+    console.log(submitClickEvent)
+
+  }, [ submitClickEvent ])
 
   useEffect(() => {
     getAuthorsForSelect().then((data) => setAuthors(data ?? [])).catch(e => console.log(e))
@@ -31,6 +45,22 @@ export function CreateBook ({ setBookData, bookData }: CreateBookProps){
     }
   }
 
+  const createBookSubmit = async () => {
+    const formData = new FormData()
+    formData.append('Title', bookData.Title)
+    formData.append('Description', bookData.Description)
+    formData.append('ISBN', bookData.ISBN)
+    formData.append('Quantity', bookData.Quantity.toString())
+    formData.append('Cover', bookData.Cover)
+    formData.append('PublishDate', bookData.PublishDate)
+    bookData.AuthorIds.forEach((authorId) => formData.append('AuthorIds', authorId))
+    try{
+      await createBook(formData)
+    }catch(err){
+      console.log(err)
+    }
+  }
+
   const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target
     setBookData({ ...bookData, [name]: value })
@@ -45,6 +75,7 @@ export function CreateBook ({ setBookData, bookData }: CreateBookProps){
       setBookData({ ...bookData, ['Cover']: event.target.files[0] })
     }
   }
+
   return(
     <>
       <form className='book-data-form'>
