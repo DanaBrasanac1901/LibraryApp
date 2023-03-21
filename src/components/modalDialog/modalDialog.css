@@ -9,9 +9,10 @@
 }
 
 .modal-dialog-body {
-    height: fit-content;
-    width: 400px;
-    justify-content: center;
+    height: 500px;
+    overflow-y: auto;
+    width: 370px;
+    justify-content: flex-start;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -21,6 +22,10 @@
     margin-top: 20%;
     border-radius: 15px;
     background-color: #6F4D94;
+}
+
+.modal-dialog-body::-webkit-scrollbar {
+    display: none;
 }
 
 .modal-dialog-buttons {

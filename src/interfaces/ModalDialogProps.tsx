@@ -1,8 +1,10 @@
 import { Dispatch } from 'react'
 
-import { BookFormProps } from './BookFormProps'
+import { BookDetailsResponse } from './BookDetailsResponse'
+import { DialogContentProps } from './DialogContentProps'
 
 export interface ModalDialogProps {
     setShowDialog: Dispatch<React.SetStateAction<boolean>>,
-    children: (props: BookFormProps) => JSX.Element
+    children: (props: DialogContentProps) => JSX.Element,
+    bookDetails? : BookDetailsResponse
   }

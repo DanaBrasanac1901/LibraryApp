@@ -12,12 +12,6 @@ export function SideMenu({ isAuthenticated }: SideMenuProps) {
           <button className='side-menu-buttons'>Home</button>
         </NavLink>
       </div>
-      { isAuthenticated &&
-      <div>
-        <NavLink to='/profile'>
-          <button className='side-menu-buttons'>Profile</button>
-        </NavLink>
-      </div> }
     </div>
   )
 }

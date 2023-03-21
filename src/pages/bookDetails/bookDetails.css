@@ -20,9 +20,10 @@
     margin: 0px;
 }
 
-#book-details-update-button {
-    max-width: fit-content;
-    align-self: center;
+.book-details-buttons {
+    display: flex;
+    align-content: center;
+    justify-content: center;
     margin-top: 15px;
 }
 

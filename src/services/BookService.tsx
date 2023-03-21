@@ -19,3 +19,13 @@ export const getBookDetails = async (bookId : number) : Promise<AxiosResponse<Bo
   if(url) return axios.get(`${url}Books/${bookId}`)
   return Promise.reject(Error('URL not valid'))
 }
+
+export const updateBook = async (formData:FormData) => {
+  if(url) return axios.put(`${url}Books`, formData)
+  return Promise.reject(Error('URL not valid'))
+}
+
+export const deleteBook = async ( bookId : string) : Promise<AxiosResponse<string>> => {
+  if(url) return axios.delete(`${url}Books/${bookId}`)
+  return Promise.reject(Error('URL not valid'))
+}

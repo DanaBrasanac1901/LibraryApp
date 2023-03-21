@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { BookCard } from '../../components/bookCard/BookCard'
 import { BookForm } from '../../components/bookForm/BookForm'
 import { ModalDialog } from '../../components/modalDialog/ModalDialog'
-import { BookFormProps } from '../../interfaces/BookFormProps'
+import { DialogContentProps } from '../../interfaces/DialogContentProps'
 import { GetAllBooksResponse } from '../../interfaces/GetAllBooksResponse'
 import { getAllBooksPaginated } from '../../services/BookService'
 import { isUserAdmin } from '../../services/SessionStorageService'
@@ -59,7 +59,7 @@ export function HomePage() {
       {showCreateBookDialog &&
         <ModalDialog setShowDialog = {setShowCreateBookDialog}>
           {
-            (injectedProps : BookFormProps) => (
+            (injectedProps : DialogContentProps) => (
               <BookForm {...injectedProps} />
             )
           }
