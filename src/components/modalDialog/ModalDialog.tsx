@@ -1,18 +1,31 @@
+import { useEffect, useState } from 'react'
+
 import { ModalDialogProps } from '../../interfaces/ModalDialogProps'
 import './modalDialog.css'
 
-export function ModalDialog({ children, setShowDialog, onSubmit }: ModalDialogProps) {
+export function ModalDialog({ children, setShowDialog, bookDetails }: ModalDialogProps) {
+  const [ submitClickEvent, submitOnClick ] = useState(false)
+  const [ isModalFirstRender, setIsModalFirstRender ] = useState(true)
+  const [ isModalReadyToClose, setIsModalReadyToClose ] = useState(false)
+
+  useEffect( () => {
+    if(isModalReadyToClose) closeDialog()
+  }, [ isModalReadyToClose ])
 
   const closeDialog = () => {
     setShowDialog(false)
+  }
+  const onSubmitClickHandler = () =>{
+    setIsModalFirstRender(false)
+    submitOnClick((previousState) => !previousState)
   }
 
   return (
     <div className='modal-dialog-overlay'>
       <div className='modal-dialog-body'>
-        {children}
+        {children({ submitClickEvent, isModalFirstRender, setIsModalReadyToClose, bookDetails })}
         <div className='modal-dialog-buttons'>
-          <button className='modal-dialog-button' onClick={() =>{void onSubmit()} }>Submit</button>
+          <button className='modal-dialog-button' onClick={onSubmitClickHandler}>Confirm</button>
           <button className='modal-dialog-button' onClick={closeDialog}>Cancel</button>
         </div>
       </div>

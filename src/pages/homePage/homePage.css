@@ -1,12 +1,13 @@
 .home-page {
     width: 100%;
-    margin: 5% 5%;
+    margin-top: 5%;
 }
 
 .home-page-books {
     justify-content: center;
     margin-top: 8vh;
     margin-bottom: 8vh;
+    margin-left: 15px;
 }
 
 .home-page-infinite-scroll-content {
@@ -19,6 +20,10 @@
 }
 
 @media only screen and (min-width: 768px) {
+    .home-page {
+        margin: 5% 5%;
+    }
+
     .home-page-books {
         width: 100%;
         justify-content: center;

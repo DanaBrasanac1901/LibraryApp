@@ -15,7 +15,7 @@ export function AppRouter({ setIsAuthenticated }: AppRouterProps){
         <Route path='profile' element={<ProfilePage setIsAuthenticated={setIsAuthenticated} />} />
       </Route>
       <Route path='/' element={<HomePage />} />
-      <Route path='details' element={<BookDetails />} />
+      <Route path='book-details/:bookId' element={<BookDetails />} />
       <Route path='login' element={<LoginPage setIsAuthenticated={setIsAuthenticated} />} />
     </Routes>
   )
