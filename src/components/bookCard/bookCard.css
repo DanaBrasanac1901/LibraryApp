@@ -3,7 +3,7 @@
     border-radius: 10px;
     margin: 15px 15px;
     width: 330px;
-    height: 600px;
+    height: 700px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -14,17 +14,23 @@
 
 }
 
+.book-card-title {
+    font-size: 38px;
+    justify-self: center;
+}
+
 #img {
     height: 380px;
     width: 250px;
     object-fit: cover;
-    border: outset black 3px;
+    border: outset black 4px;
+    justify-self: center;
     margin-bottom: 15px;
 }
 
 .author-names {
     margin: 5px;
-    font-size: large;
+    font-size: 24px;
 }
 
 .book-card-isbn-segment {

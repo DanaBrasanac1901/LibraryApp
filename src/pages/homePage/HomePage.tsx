@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { useNavigate } from 'react-router-dom'
+import { BiLoaderCircle as LoadingIcon } from 'react-icons/bi'
 
 import { BookCard } from '../../components/bookCard/BookCard'
 import { BookForm } from '../../components/bookForm/BookForm'
@@ -55,7 +56,7 @@ export function HomePage() {
 
   return (
     <div className='home-page'>
-      {isUserAdmin() && <button onClick = {openDialog}>Add book</button>}
+      {isUserAdmin() && <button id='add-book-button' onClick = {openDialog}>Add book</button>}
       {showCreateBookDialog &&
         <ModalDialog setShowDialog = {setShowCreateBookDialog}>
           {
@@ -70,14 +71,23 @@ export function HomePage() {
           next={nextPage}
           hasMore={hasMore}
           loader={
-            <div className='infinite-scroll-loader'>
-              <h2>loading</h2>
-            </div>}
+            <LoadingIcon size={50}/>
+          }
           endMessage={<h2>You have seen all of the books</h2>}
         >
           <div className='home-page-infinite-scroll-content'>
             {allBooks.Items.map((item) =>
-              (<div key = {item.Id} onClick={() => navigate(`book-details/${item.Id}`)}> <BookCard Title = {item.Title} Isbn={item.Isbn} Cover = {item.Cover} Authors={item.Authors}/></div>))}
+              (
+                <div key = {item.Id} onClick={() => navigate(`book-details/${item.Id}`)}>
+                  <BookCard
+                    Title = {item.Title}
+                    Isbn={item.Isbn}
+                    Cover = {item.Cover}
+                    Authors={item.Authors}
+                  />
+                </div>
+              )
+            )}
           </div>
 
         </InfiniteScroll>
