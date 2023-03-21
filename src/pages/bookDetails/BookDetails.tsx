@@ -8,8 +8,8 @@ import { BookDetailsResponse } from '../../interfaces/BookDetailsResponse'
 import { getBookDetails } from '../../services/BookService'
 import { ModalDialog } from '../../components/modalDialog/ModalDialog'
 import { BookForm } from '../../components/bookForm/BookForm'
-import './bookDetails.css'
 import { BookFormProps } from '../../interfaces/BookFormProps'
+import './bookDetails.css'
 
 export function BookDetails() {
   const bookId = Number(useParams().bookId)
@@ -37,7 +37,7 @@ export function BookDetails() {
       {showUpdateBookDialog &&
         <ModalDialog setShowDialog = {setShowUpdateBookDialog} >
           {
-            (injectedProps : BookFormProps) => (
+            (injectedProps: BookFormProps) => (
               <BookForm {...injectedProps} />
             )
           }
@@ -50,7 +50,10 @@ export function BookDetails() {
       <label> Published : {moment(bookDetails.PublishDate).format('DD/MM/YYYY')}</label>
       <label> Authors </label>
       {bookDetails.Authors.map((author) => (<p className='book-details-author-names' key={author.Id}> {author.Firstname} {author.Lastname}</p>))}
-      <button id='book-details-update-button' onClick={() => setShowUpdateBookDialog(true)}>Update</button>
+      <div className='book-details-buttons'>
+      <button onClick={() => setShowUpdateBookDialog(true)}>Update</button>
+      <button >Delete</button>
+      </div>
     </div>
   )
 }

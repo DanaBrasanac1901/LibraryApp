@@ -1,4 +1,6 @@
-export interface bookData{
+import { BookDetailsResponse } from "./BookDetailsResponse";
+
+export interface BookData{
     Title: string;
     Description: string;
     ISBN: string;
@@ -8,11 +10,7 @@ export interface bookData{
     Cover: Blob;
 }
 
-export interface CreateBookProps {
-    setBookData: React.Dispatch<React.SetStateAction<bookData>>,
-    bookData: bookData
-}
-
 export interface BookFormProps{
-    submitClickEvent: boolean
+    submitClickEvent: boolean,
+    bookData? : BookDetailsResponse
 }
