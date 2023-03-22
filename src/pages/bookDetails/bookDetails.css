@@ -27,6 +27,12 @@
     margin-top: 15px;
 }
 
+.book-history-table {
+
+    border: solid purple 4px;
+    width: 700px;
+    
+}
 
 @media only screen and (min-width: 768px) {
     .book-details-page {

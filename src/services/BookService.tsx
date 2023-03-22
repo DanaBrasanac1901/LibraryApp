@@ -1,6 +1,7 @@
 import axios, { AxiosResponse } from 'axios'
 
 import { BookDetailsResponse } from '../interfaces/BookDetailsResponse'
+import { BookHistoryResponse } from '../interfaces/BookHistoryResponse'
 import { GetAllBooksResponse } from '../interfaces/GetAllBooksResponse'
 import { PaginatedBooksRequest } from '../interfaces/PaginatedBooksRequest'
 
@@ -23,4 +24,16 @@ export const updateBook = async (formData:FormData) => {
 
 export const deleteBook = async ( bookId : string) : Promise<AxiosResponse<string>> => {
   return axios.delete(`${url}Books/${bookId}`)
+}
+
+export const getBookHistory = async ( bookId : number) : Promise<AxiosResponse<BookHistoryResponse[]>> => {
+  return axios.get<BookHistoryResponse[]>(`${url}Rental/book-history/${bookId}`)
+}
+
+export const rentBook = async ( bookId : string) : Promise<AxiosResponse<string>> => {
+  return axios.post(`${url}Rental/rent/${bookId}`)
+}
+
+export const returnBook = async ( rentId : string) : Promise<AxiosResponse<string>> => {
+  return axios.post(`${url}Rental/return/${rentId}`)
 }

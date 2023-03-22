@@ -43,3 +43,8 @@ export const isUserAdmin = () => {
   const token = decodeToken()
   return token!== null && token['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] ==='Admin'
 }
+
+export const isUserCustomer = () => {
+  const token = decodeToken()
+  return token!== null && token['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] ==='User'
+}
