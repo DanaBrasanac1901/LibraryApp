@@ -30,7 +30,7 @@ export const getBookHistory = async ( bookId : number) : Promise<AxiosResponse<B
   return axios.get<BookHistoryResponse[]>(`${url}Rental/book-history/${bookId}`)
 }
 
-export const rentBook = async ( bookId : string) : Promise<AxiosResponse<string>> => {
+export const rentBook = async ( bookId : number) : Promise<AxiosResponse<string>> => {
   return axios.post(`${url}Rental/rent/${bookId}`)
 }
 

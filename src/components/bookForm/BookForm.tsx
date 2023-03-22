@@ -17,8 +17,8 @@ import './bookForm.css'
 export function BookForm({ submitClickEvent, isModalFirstRender, bookDetails, setIsModalReadyToClose }: DialogContentProps){
   const [ showCreateAuthorForm, setShowCreateAuthorForm ] = useState(false)
   const [ authors, setAuthors ] = useState<Author[]>([])
-  const [ cover, setCover ] = useState( bookDetails?.Cover ? `data:image/png;base64, ${bookDetails.Cover}` : DefaultBookIcon)
   const navigate = useNavigate()
+  const [ cover, setCover ] = useState( bookDetails?.Cover ? `data:image/png;base64, ${bookDetails.Cover}` : DefaultBookIcon)
   const [ bookDataForRequest, setBookDataForRequest ] = useState<BookData>({
     'Title': bookDetails ? bookDetails.Title : '',
     'Description': bookDetails ? bookDetails.Description : '',
@@ -51,21 +51,15 @@ export function BookForm({ submitClickEvent, isModalFirstRender, bookDetails, se
   }, [ submitClickEvent ])
 
   useEffect(() => {
-    getAuthorsForSelect()
-      .then((data) => setAuthors(data ?? []))
-      .catch(e => console.log(e))
+    fetchAuthorsForSelect()
   }, [])
 
   const toggleAuthorsForm = () => {
     setShowCreateAuthorForm(!showCreateAuthorForm)
   }
 
-  const getAuthorsForSelect = async ()  => {
-    try{
-      return (await getAllAuthors()).data
-    }catch(error){
-      error
-    }
+  const fetchAuthorsForSelect = ()  => {
+    getAllAuthors().then( res => { setAuthors(res.data)}).catch(e => console.log(e))
   }
 
   const prepareFormData = () =>
@@ -135,7 +129,7 @@ export function BookForm({ submitClickEvent, isModalFirstRender, bookDetails, se
           </select>
         </div>
       </form>
-      { showCreateAuthorForm && <CreateAuthorForm />}
+      { showCreateAuthorForm && <CreateAuthorForm fetchAuthors={fetchAuthorsForSelect} />}
     </>
   )
 }

@@ -2,18 +2,17 @@ import { useEffect, useState } from 'react'
 
 import moment from 'moment'
 import { useParams } from 'react-router-dom'
-import { toast, ToastContainer } from 'react-toastify'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 import DefaultBookIcon from '../../assets/generic-book-icon.png'
 import { BookDetailsResponse } from '../../interfaces/BookDetailsResponse'
-import { getBookDetails, getBookHistory } from '../../services/BookService'
+import { getBookDetails, rentBook } from '../../services/BookService'
 import { ModalDialog } from '../../components/modalDialog/ModalDialog'
 import { BookForm } from '../../components/bookForm/BookForm'
 import { DialogContentProps } from '../../interfaces/DialogContentProps'
 import { BookDelete } from '../../components/bookDelete/BookDelete'
 import { isUserAdmin } from '../../services/SessionStorageService'
-import { RentBook } from '../../components/rentBook/RentBook'
-import { ReturnBook } from '../../components/returnBook/ReturnBook'
 import { BookHistory } from '../../components/bookHistory/BookHistory'
 import './bookDetails.css'
 
@@ -21,9 +20,7 @@ export function BookDetails() {
   const bookId = Number(useParams().bookId)
   const [ showUpdateBookDialog, setShowUpdateBookDialog ] = useState(false)
   const [ showDeleteBookDialog, setShowDeleteBookDialog ] = useState(false)
-  const [ showRentBookDialog, setShowRentBookDialog ] = useState(false)
-  const [ showReturnBookDialog, setShowReturnBookDialog ] = useState(false)
-  const [ rentId, setRentId ] = useState(0)
+  const [ newBookRented, setNewBookRented ] = useState(false)
   const [ bookDetails, setBookDetails ] = useState<BookDetailsResponse>({
     Id: 0,
     Title: '',
@@ -36,17 +33,33 @@ export function BookDetails() {
     Authors: []
   })
   useEffect( () => {
-    getBookDetails(bookId).then( res => {
-      setBookDetails(res.data)
-    }).catch(( ) => toast('Something went wrong while loading this book!'))
+    fetchBookDetails()
   }, [ bookId ])
 
-  const returnClickHandler = () => {
-    return
+  const fetchBookDetails = () => {
+    getBookDetails(bookId).then( res => {
+      setBookDetails(res.data)
+    }).catch(( ) => toast.error('Something went wrong while loading this book!'))
+  }
+
+  const handleRentBook = () => {
+    rentBook(bookId).then( () => {
+      toast.success('Book rented succesfully!')
+      setNewBookRented((previousState) => !previousState)
+    }).catch( e=>console.log(e))
   }
 
   return (
     <div className='book-details-page'>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={true}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        theme="colored"
+      />
       {showUpdateBookDialog &&
         <ModalDialog setShowDialog = {setShowUpdateBookDialog} bookDetails = {bookDetails} >
           {
@@ -61,24 +74,6 @@ export function BookDetails() {
           {
             ( injectedProps : DialogContentProps) => (
               <BookDelete {...injectedProps} />
-            )
-          }
-        </ModalDialog>
-      }
-      {showRentBookDialog &&
-        <ModalDialog setShowDialog = {setShowRentBookDialog} >
-          {
-            ( injectedProps : DialogContentProps) => (
-              <RentBook {...injectedProps} />
-            )
-          }
-        </ModalDialog>
-      }
-      {showReturnBookDialog &&
-        <ModalDialog setShowDialog = {setShowReturnBookDialog}  rentId={rentId}>
-          {
-            ( injectedProps : DialogContentProps) => (
-              <ReturnBook {...injectedProps} />
             )
           }
         </ModalDialog>
@@ -98,10 +93,9 @@ export function BookDetails() {
               <button onClick={() => setShowDeleteBookDialog(true)}>Delete</button>
             </>
         }
-        <button onClick={() => setShowRentBookDialog(true)}>Rent</button>
-        <button onClick={() => returnClickHandler()}>Return</button>
+        <button onClick={handleRentBook}>Rent</button>
       </div>
-      <BookHistory setRentId={setRentId} />
+      <BookHistory fetchBookDetails={fetchBookDetails} newBookRented={newBookRented} />
     </div>
   )
 }

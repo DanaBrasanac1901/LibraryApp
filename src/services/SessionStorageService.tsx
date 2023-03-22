@@ -44,9 +44,9 @@ export const isUserAdmin = () => {
   return token!== null && token['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] ==='Admin'
 }
 
-export const getCurrentUserName = ()  => {
+export const getCurrentUserName = () : string | null  => {
   const token = decodeToken()
-  if(token === null) return
+  if(token === null) return null
   return token['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name']
 }
 

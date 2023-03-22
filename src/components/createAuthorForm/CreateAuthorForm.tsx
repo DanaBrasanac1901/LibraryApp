@@ -1,10 +1,11 @@
 import { useState } from 'react'
 
 import { CreateAuthorBody } from '../../interfaces/CreateAuthorBody'
+import { CreateAuthorFormProps } from '../../interfaces/CreateAuthorFormProps'
 import { createAuthor } from '../../services/AuthorService'
 import './createAuthorForm.css'
 
-export function CreateAuthorForm () {
+export function CreateAuthorForm ({ fetchAuthors }: CreateAuthorFormProps) {
   const [ authorData, setAuthorData ] = useState({
     'FirstName': '',
     'LastName': ''
@@ -18,6 +19,7 @@ export function CreateAuthorForm () {
     }
     try{
       await createAuthor(author)
+      fetchAuthors()
     }catch(err){
       console.log(err)
     }

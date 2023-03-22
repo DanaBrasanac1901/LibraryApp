@@ -24,5 +24,9 @@ export function BookDelete({ submitClickEvent, isModalFirstRender, setIsModalRea
       transition: Bounce
     }))
   }, [ submitClickEvent ])
-  return <p>Are you sure you want to delete this book?</p>
+  return(
+    <>
+      <p>Are you sure you want to delete this book?</p>
+    </>
+  )
 }
