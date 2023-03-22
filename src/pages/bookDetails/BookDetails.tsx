@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 
 import moment from 'moment'
 import { useParams } from 'react-router-dom'
+import { toast, ToastContainer } from 'react-toastify'
 
 import DefaultBookIcon from '../../assets/generic-book-icon.png'
 import { BookDetailsResponse } from '../../interfaces/BookDetailsResponse'
@@ -10,11 +11,11 @@ import { ModalDialog } from '../../components/modalDialog/ModalDialog'
 import { BookForm } from '../../components/bookForm/BookForm'
 import { DialogContentProps } from '../../interfaces/DialogContentProps'
 import { BookDelete } from '../../components/bookDelete/BookDelete'
-import { isUserAdmin, isUserCustomer } from '../../services/SessionStorageService'
-import './bookDetails.css'
+import { isUserAdmin } from '../../services/SessionStorageService'
 import { RentBook } from '../../components/rentBook/RentBook'
-import { BookHistoryResponse } from '../../interfaces/BookHistoryResponse'
 import { ReturnBook } from '../../components/returnBook/ReturnBook'
+import { BookHistory } from '../../components/bookHistory/BookHistory'
+import './bookDetails.css'
 
 export function BookDetails() {
   const bookId = Number(useParams().bookId)
@@ -22,6 +23,7 @@ export function BookDetails() {
   const [ showDeleteBookDialog, setShowDeleteBookDialog ] = useState(false)
   const [ showRentBookDialog, setShowRentBookDialog ] = useState(false)
   const [ showReturnBookDialog, setShowReturnBookDialog ] = useState(false)
+  const [ rentId, setRentId ] = useState(0)
   const [ bookDetails, setBookDetails ] = useState<BookDetailsResponse>({
     Id: 0,
     Title: '',
@@ -33,16 +35,15 @@ export function BookDetails() {
     PublishDate: '',
     Authors: []
   })
-  const [ bookHistory, setBookHistory ] = useState<BookHistoryResponse[]>([])
   useEffect( () => {
     getBookDetails(bookId).then( res => {
       setBookDetails(res.data)
-    }).catch(e => console.log(e))
-    getBookHistory(bookId).then( res => {
-      setBookHistory(res.data)
-      console.log(res.data)
-    }).catch(e => console.log(e))
+    }).catch(( ) => toast('Something went wrong while loading this book!'))
   }, [ bookId ])
+
+  const returnClickHandler = () => {
+    return
+  }
 
   return (
     <div className='book-details-page'>
@@ -74,7 +75,7 @@ export function BookDetails() {
         </ModalDialog>
       }
       {showReturnBookDialog &&
-        <ModalDialog setShowDialog = {setShowReturnBookDialog} >
+        <ModalDialog setShowDialog = {setShowReturnBookDialog}  rentId={rentId}>
           {
             ( injectedProps : DialogContentProps) => (
               <ReturnBook {...injectedProps} />
@@ -84,44 +85,23 @@ export function BookDetails() {
       }
       <h1>{bookDetails.Title}</h1>
       <img id='book-details-cover' src={bookDetails.Cover ? `data:image/png;base64, ${bookDetails.Cover}` : DefaultBookIcon} />
+      <label> Authors </label>
+      {bookDetails.Authors.map((author) => (<p className='book-details-author-names' key={author.Id}> {author.Firstname} {author.Lastname}</p>))}
       <label>{bookDetails.Description}</label>
       <label> Isbn: {bookDetails.ISBN}</label>
       <label> Published : {moment(bookDetails.PublishDate).format('YYYY-MM-DD') ?? 'Unavailable'}</label>
-      <label> Authors </label>
-      {bookDetails.Authors.map((author) => (<p className='book-details-author-names' key={author.Id}> {author.Firstname} {author.Lastname}</p>))}
+      <div className='book-details-buttons'>
         {
           isUserAdmin() &&
-          <div className='book-details-buttons'>
-          <button onClick={() => setShowUpdateBookDialog(true)}>Update</button>
-          <button onClick={() => setShowDeleteBookDialog(true)}>Delete</button>
-          </div>
+            <>
+              <button onClick={() => setShowUpdateBookDialog(true)}>Update</button>
+              <button onClick={() => setShowDeleteBookDialog(true)}>Delete</button>
+            </>
         }
-        {
-          isUserCustomer() &&
-          <div className='book-details-buttons'>
-          <button onClick={() => setShowRentBookDialog(true)}>Rent</button>
-          <button onClick={() => setShowReturnBookDialog(true)}>Return</button>
-          </div>
-        }
-        <table className='book-history-table'>
-          <thead>
-          <tr>
-            <td>Username</td>
-            <td>Rented on</td>
-            <td>Returned</td>
-          </tr>
-          </thead>
-          <tbody>
-            {bookHistory.map( (item) => (
-              <tr key={item.Id}>
-                <td>{item.User.Email}</td>
-                <td>{moment(item.RentDate).format('YYYY-MM-DD')}</td>
-                <td>
-                  <input type='checkbox' checked={item.IsReturned} readOnly={true}/>
-                </td>
-              </tr>))}
-          </tbody>
-        </table>
+        <button onClick={() => setShowRentBookDialog(true)}>Rent</button>
+        <button onClick={() => returnClickHandler()}>Return</button>
+      </div>
+      <BookHistory setRentId={setRentId} />
     </div>
   )
 }

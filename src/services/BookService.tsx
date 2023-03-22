@@ -34,6 +34,6 @@ export const rentBook = async ( bookId : string) : Promise<AxiosResponse<string>
   return axios.post(`${url}Rental/rent/${bookId}`)
 }
 
-export const returnBook = async ( rentId : string) : Promise<AxiosResponse<string>> => {
+export const returnBook = async ( rentId : number) : Promise<AxiosResponse<string>> => {
   return axios.post(`${url}Rental/return/${rentId}`)
 }

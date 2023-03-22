@@ -16,5 +16,6 @@ export interface DialogContentProps{
     submitClickEvent: boolean,
     isModalFirstRender : boolean,
     setIsModalReadyToClose : Dispatch<SetStateAction<boolean>>,
-    bookDetails? : BookDetailsResponse
+    bookDetails? : BookDetailsResponse,
+    rentId? : number
 }

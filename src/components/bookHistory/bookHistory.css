@@ -1,0 +1,14 @@
+.book-history-table {
+    align-self: center;
+    border: double purple 3px;
+    width: 380px;
+    border-collapse: collapse;
+    position: unset;
+    bottom: 40px;
+
+}
+
+.book-history-table td {
+    border: purple solid 1px;
+    font-size: 20px
+}
