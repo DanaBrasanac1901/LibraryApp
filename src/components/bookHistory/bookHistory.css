@@ -3,8 +3,14 @@
     border: double purple 3px;
     width: 380px;
     border-collapse: collapse;
-    padding-bottom: 50px;
 
+}
+
+.book-history-table-wrapper {
+    padding-bottom: 100px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
 }
 
 .book-history-table td {

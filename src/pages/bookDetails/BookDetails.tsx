@@ -43,6 +43,7 @@ export function BookDetails() {
   }
 
   const handleRentBook = () => {
+    if(bookDetails.Available === 0) toast.error('This book is unavailable!')
     rentBook(bookId).then( () => {
       toast.success('Book rented succesfully!')
       setNewBookRented((previousState) => !previousState)
@@ -61,7 +62,7 @@ export function BookDetails() {
         theme="colored"
       />
       {showUpdateBookDialog &&
-        <ModalDialog setShowDialog = {setShowUpdateBookDialog} bookDetails = {bookDetails} >
+        <ModalDialog setShowDialog = {setShowUpdateBookDialog} bookDetails = {bookDetails} fetchBookDetails = {fetchBookDetails} >
           {
             ( injectedProps : DialogContentProps) => (
               <BookForm {...injectedProps} />

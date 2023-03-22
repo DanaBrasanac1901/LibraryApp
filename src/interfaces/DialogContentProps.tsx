@@ -17,5 +17,6 @@ export interface DialogContentProps{
     isModalFirstRender : boolean,
     setIsModalReadyToClose : Dispatch<SetStateAction<boolean>>,
     bookDetails? : BookDetailsResponse,
+    fetchBookDetails? : () => void,
     rentId? : number
 }

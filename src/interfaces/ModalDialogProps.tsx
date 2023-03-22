@@ -6,5 +6,6 @@ import { DialogContentProps } from './DialogContentProps'
 export interface ModalDialogProps {
     setShowDialog: Dispatch<React.SetStateAction<boolean>>,
     children: (props: DialogContentProps) => JSX.Element,
-    bookDetails? : BookDetailsResponse
+    bookDetails? : BookDetailsResponse,
+    fetchBookDetails? : () => void
   }

@@ -12,7 +12,7 @@ export function HeaderMenu({ isAuthenticated, setIsAuthenticated }: HeaderMenuPr
   }
   return (
     <div className='header-menu'>
-      <SearchBar/>
+      {/*<SearchBar/> */}
       <div className='header-routing-buttons'>
         {isAuthenticated ?
           <NavLink to='/'>

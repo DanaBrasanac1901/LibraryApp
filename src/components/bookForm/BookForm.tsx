@@ -36,8 +36,8 @@ export function BookForm({ submitClickEvent, isModalFirstRender, bookDetails, se
       formForRequest.append('Id', bookDetails.Id.toString())
       updateBook(formForRequest)
         .then( () => {
-          setIsModalReadyToClose(true)
           navigate(`/book-details/${bookDetails.Id}`)
+          setIsModalReadyToClose(true)
         }).catch(e=>console.log(e))
     }else{
       createBook(formForRequest).then(

@@ -1,11 +1,12 @@
 .home-page {
     width: 100%;
     margin-top: 5%;
+    padding-top: 15%;
 }
 
 .home-page-books {
     justify-content: center;
-    margin-top: 8vh;
+    margin-top: 4vh;
     margin-bottom: 8vh;
     margin-left: 15px;
 }
@@ -21,7 +22,8 @@
 
 @media only screen and (min-width: 768px) {
     .home-page {
-        margin: 5% 5%;
+        margin: 3% 3%;
+        padding-top: 2%;
     }
 
     .home-page-books {
@@ -29,7 +31,8 @@
         justify-content: center;
         margin-top: 5vh;
         margin-bottom: 8vh;
-        margin-left: 7%;
+        margin-left: 3%;
+        padding-left: 5%;
     }
 
     .home-page-infinite-scroll-content {

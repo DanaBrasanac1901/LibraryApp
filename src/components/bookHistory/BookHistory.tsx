@@ -36,29 +36,30 @@ export function BookHistory({ fetchBookDetails, newBookRented }: BookHistoryProp
   }
   return(
     <>
-      <h2>Book rent history</h2>
-      <ToastContainer />
-      <table className='book-history-table'>
-        <thead>
-          <tr>
-            <td>Username</td>
-            <td>Rented on</td>
-            {isUserAdmin() && <td>Returned</td>}
-          </tr>
-        </thead>
-        <tbody>
-          {bookHistory.map( (item) => (
-            <tr key={item.Id}>
-              <td>{item.User.Email}</td>
-              <td>{moment(item.RentDate).format('YYYY-MM-DD')}</td>
-              { isUserAdmin() &&
+    <h2>Book rent history</h2>
+    <div className='book-history-table-wrapper'>
+        <table className='book-history-table'>
+          <thead>
+            <tr>
+              <td>Username</td>
+              <td>Rented on</td>
+              {isUserAdmin() && <td>Returned</td>}
+            </tr>
+          </thead>
+          <tbody>
+            {bookHistory.map( (item) => (
+              <tr key={item.Id}>
+                <td>{item.User.Email}</td>
+                <td>{moment(item.RentDate).format('YYYY-MM-DD')}</td>
+                { isUserAdmin() &&
                 <td>
                   <button disabled={item.IsReturned} onClick={() => handleReturnBook(item.Id) }>Return</button>
                 </td>
-              }
-            </tr>))}
-        </tbody>
-      </table>
+                }
+              </tr>))}
+          </tbody>
+        </table>
+    </div>
     </>
   )
 }

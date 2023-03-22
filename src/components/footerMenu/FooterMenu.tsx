@@ -9,10 +9,7 @@ export function FooterMenu({ isAuthenticated }:FooterMenuProps) {
       <NavLink to='/'>
         <button className='footer-buttons'>Home</button>
       </NavLink>
-      {isAuthenticated ?
-        <NavLink to='/profile'>
-          <button className='footer-buttons'>Profile</button>
-        </NavLink>:
+      {!isAuthenticated &&
         <NavLink to='/login' >
           <button className='footer-buttons'>Sign in</button>
         </NavLink>

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import { useLocation } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
 
 import { FooterMenu } from './components/footerMenu/FooterMenu'
 import { SideMenu } from './components/sideMenu/SideMenu'
@@ -9,6 +10,7 @@ import { AppRouter } from './router/AppRouter'
 import { isUserAuthenticated } from './services/SessionStorageService'
 import { configureAxios } from './AxiosConfig'
 import './App.css'
+
 
 configureAxios()
 
@@ -22,6 +24,7 @@ function App() {
 
   return (
     <div className='app'>
+       <ToastContainer />
       <header className='app-header'>
         {!isOnLoginPage() &&
           <HeaderMenu isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
